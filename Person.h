@@ -22,11 +22,14 @@ protected:
   int age;
   
 public:
+  
+  /* Constructors */
   Person ();
   Person (string name, string gender, int age);
   Person (const Person &pOld);
-  ~Person ()
+  ~Person ();
 
+  /* Getters and Setters */
   string getName ();
   string getGender ();
   int getAge ();
@@ -35,6 +38,8 @@ public:
   void setGender (string gender);
   void setAge (int age);
   
+  /* Member Functions */
+  //gets a string representation of the person
   string getPerson ();
 };
 
