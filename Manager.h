@@ -23,6 +23,7 @@ using namespace std;
 class Manager //: public Person
 {
 private:
+protected:
     /* name , age , gender inherited from person class */
    
     time_t hireDate; //date hired in utc format
@@ -48,6 +49,7 @@ public:
 
     double getMonthlyExpense();
     void setMonthlyExpense(double monthlyExpense);
+    
     //
     //member fuctions
     //
@@ -60,7 +62,7 @@ public:
 
     //Profile of each tenant and manager(i assume this means a print function)
     void Profile();
-    
+
     //
     //end member fuctions
     //
