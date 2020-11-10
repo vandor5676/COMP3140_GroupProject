@@ -13,6 +13,11 @@
 //#include "Manager.cpp"
 #ifndef MANAGER_CPP
 #define MANAGER_CPP
+#endif 
+
+#ifndef PERSON_H
+#include "Person.h"
+#define PERSON_H
 #endif
 
 #include <iostream>
@@ -20,7 +25,7 @@
 #include <string>
 using namespace std;
 
-class Manager //: public Person
+class Manager : public Person
 {
 private:
 protected:
