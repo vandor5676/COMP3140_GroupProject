@@ -7,7 +7,7 @@
 #ifndef MANAGER_H
 #define MANAGER_H
 #include <string>
-#include"Manager.h"
+#include"Date.h"
 #include"Person.h"
 
 using namespace std;
@@ -39,7 +39,7 @@ class Manager : public Person
         double getBouns(double newBouns);
         double getMonthly_expense(double new_me);
         //Print information of Manager
-        virtual void printInfo() const
+        virtual void printInfo() const;
 };
 #endif
 

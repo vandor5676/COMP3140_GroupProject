@@ -7,7 +7,7 @@
 #ifndef TENANT_H
 #define TENANT_H
 #include <string>
-#include"Tenant.h"
+#include"Date.h"
 #include"Person.h"
 
 using namespace std;
@@ -33,7 +33,7 @@ class Tenant : public Person
         void setJob(const string& newJob);
         void setUnitNumber(const int& newUnitNumber);
         void setMonthlyRent(const double& newMonthly_rent);
-        void setPaymentStatus(const char& newPayment_status)
+        void setPaymentStatus(const char& newPayment_status);
         //Accessors
         string getJob() const; 
         int getUnitNumber() const; 
