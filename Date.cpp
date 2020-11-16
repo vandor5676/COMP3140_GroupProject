@@ -59,8 +59,7 @@ bool Date::checkValidDate()
 
    time_t now = time(0);
    tm *ltm = localtime(&now);
-    //curtime
-    //Year is correct ??
+
     if(year>1900 + ltm->tm_year)
     return false;
 
