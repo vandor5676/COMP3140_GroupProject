@@ -43,7 +43,7 @@ string Date::getDate()
 string Date::converMonth(int m)
 {
     std::vector<std::string> months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-    return (months[m]);
+    return (months[m-1]);
 }
 //Checks if the given numbers is a valid date by checking if days is between
 //1 - 31, Months is 1 - 12, and Year is correct.
@@ -59,8 +59,7 @@ bool Date::checkValidDate()
 
    time_t now = time(0);
    tm *ltm = localtime(&now);
-    //curtime
-    //Year is correct ??
+
     if(year>1900 + ltm->tm_year)
     return false;
 
