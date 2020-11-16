@@ -1,43 +1,46 @@
-#pragma once
-//#include "Tenant.h"
-#include "Person.h"
-#include <iostream>
-#include <ctime>
-
 /*
-- Team Project: Stage #1
-- Dayton Butler
-- T00258753
-- November 12, 2020
-- COMP 3140
-*/
+ *Tititle: COMP3140 Project Stage 1
+ *File name: Tenant.h
+ *File Type: Interface File 
+ *Date: 11/13/2020
+ */
+#ifndef TENANT_H
+#define TENANT_H
+#include <string>
+#include"Tenant.h"
+#include"Person.h"
 
 using namespace std;
 
-class Tenant: public Person
+class Tenant : public Person
 {
-private:
-	string job;
-	int unitNumber;
-	time_t moveInDate;
-	double monthlyFee;
-	bool isMonthPaid;
-public:
-	// Constructors/Deconstructors
-	Tenant();
-	Tenant(string name, int age, string gender, string job, int unitNumber, time_t moveInDate, double monthlyFee, bool isMonthPaid);
-	Tenant(const Tenant& tenant);
-	~Tenant();
-	// Getters/Setters
-	string getJob() const;
-	int getUnitNumber() const;
-	time_t getMoveInDate() const;
-	double getMonthlyFee() const;
-	bool getIsMonthPaid() const;
-	void setJob(string job);
-	void setUnitNumber(int unitNumber);
-	void setMoveInDate(time_t moveInDate);
-	void setMonthlyFee(double monthlyFee);
-	void setIsMonthPaid(bool isMonthPaid);
-	void profile();
+    private:
+        string job;
+        int unitNumber;
+        Date movingIn_Date;
+        double monthly_rent;
+        char payment_status[6];
+    public:
+        //Constructors
+        Tenant(const string& newName,const int& newAge, 
+                const string& newGender,const string& newJob, 
+                const int& newUnitNumber, Date newMoveIn_Day,
+                const double& newMonthly_rent, const char& newPayment_status);
+        Tenant();
+        //Destructors
+        virtual ~Tenant();
+        //Mutators
+        void setJob(const string& newJob);
+        void setUnitNumber(const int& newUnitNumber);
+        void setMonthlyRent(const double& newMonthly_rent);
+        void setPaymentStatus(const char& newPayment_status)
+        //Accessors
+        string getJob() const; 
+        int getUnitNumber() const; 
+        Date getmovingIn_Date() const; 
+        double getMonthlyRent() const;
+        char* getPaymentStatus() const;
+        //Print information of Tenant
+        virtual void printInfo() const;
 };
+#endif

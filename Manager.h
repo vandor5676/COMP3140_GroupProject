@@ -1,74 +1,45 @@
 /*
-* Title: COMP 3140 project
-* File: Manager.h
-* Description: this is the interface file for the Manager class
-*
-* Author: shane steiner
-* Version (optional)
-* Student ID: t00622768
-* Date: 11/6/2020
-*/
-
-//implement later
-//#include "Manager.cpp"
-#ifndef MANAGER_CPP
-#define MANAGER_CPP
-#endif 
-
-#ifndef PERSON_H
-#include "Person.h"
-#define PERSON_H
-#endif
-
-#include <iostream>
-#include <ctime>
+ *Tititle: COMP3140 Project Stage 1
+ *File name: Manager.h
+ *File Type: Interface File 
+ *Date: 11/13/2020
+ */
+#ifndef MANAGER_H
+#define MANAGER_H
 #include <string>
+#include"Manager.h"
+#include"Person.h"
+
 using namespace std;
 
 class Manager : public Person
 {
-private:
-protected:
-    /* name , age , gender inherited from person class */
-   
-    time_t hireDate; //date hired in utc format
-    double salary;
-    double bonus;
-    double monthlyExpense;
-
-public:
-    //constructors
-    Manager(string name, int age, string gender, time_t hireDate, double salary, double bonus, double monthlyExpense);
-    Manager(const Manager &m);
-    ~Manager();
-
-    //get set
-    time_t getHireDate();
-    void setHireDate(time_t hireDate);
-
-    double getSalary();
-    void setSalary(double salary);
-
-    double getBonus();
-    void setBonus(double bonus);
-
-    double getMonthlyExpense();
-    void setMonthlyExpense(double monthlyExpense);
-    
-    //
-    //member fuctions
-    //
-
-    //gets total manager expense for a set number of months 
-    double managerTotalExpense(int numberOfMonths);
-
-    //gets total manager salary and bonus for a set number of months 
-    double managerSalarieAndBonus(int numberOfMonths);
-
-    //Profile of each tenant and manager(i assume this means a print function)
-    void Profile();
-
-    //
-    //end member fuctions
-    //
+    private:
+        Date hired_date;
+        double salary;
+        double bouns;
+        double Monthly_expense;
+    public:
+        //Constructors
+        Manager(const string& newName,const int& newAge,
+        const string& newGender,const Date& newHired_date,
+        const double& newSalary,const double& newBouns,
+        const double& newMonthly_expense);
+        Manager();
+        //Destructors
+        virtual ~Manager();
+        //Mutators
+        void setHired_Date(const Date& date);
+        void setSalary(const double& newSalary);
+        void setBouns(const double& newBouns);
+        void setMonthly_expense(const double& new_me);
+        //Accessors
+        Date getHired_Date(Date date);
+        double getSalary(double newSalary);
+        double getBouns(double newBouns);
+        double getMonthly_expense(double new_me);
+        //Print information of Manager
+        virtual void printInfo() const
 };
+#endif
+
