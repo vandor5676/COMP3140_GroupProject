@@ -4,8 +4,9 @@
  *File Type: Imlementation File 
  *Date: 11/16/2020
  */
-#include "Manager.h";
-#include "Date.h"; 
+#include "Manager.h"
+#include "Date.h"
+#include "Person.cpp"
 using namespace std;
 #include <iostream>
 
