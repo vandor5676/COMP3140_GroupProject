@@ -10,18 +10,22 @@
 #include <string>  
 #include "Manager.cpp"
 #include "Management.cpp" 
+#include "ManagementExtraFunctions.cpp"
 #include "Date.cpp"
+#include "Tenant.cpp" 
 
 using namespace std;
 
-int main()
+int main() 
 {
     bool shanesTests = true;
     if(shanesTests)
     {
         cout<< "Start"<<endl;
         Date d(1, 2, 2021);
-        Management managment("Managers.csv");
+        //Management managment("Managers.csv");
+        ManagementExtraFunctions managment("Managers.csv", "Tenants.csv");
+        cout<<managment.tenantPaymentHistory[0][0]<<endl; 
         int stopint = 1;
     }
     

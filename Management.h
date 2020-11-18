@@ -6,7 +6,7 @@
  */
 #ifndef MANAGEMENT_DEF
 #define MANAGEMNET_DEF
-//#include "tenant.h"
+#include "Tenant.h" // had to rename tenant.h to Tenant.h
 #include "Manager.h"
 #include <string>
 
@@ -17,7 +17,7 @@ class Management
     private:
         string fileName;
         double totalManager_Expense,totalRent,totalSalarayBonus_Expense;
-        //Tenant tenantArr[100];
+        Tenant tenantArr[100];
         Manager managerArr[2];
     public:
         //Parameter constructor, takes in a file name as a string.
