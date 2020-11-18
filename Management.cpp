@@ -64,7 +64,6 @@ void Management::readFile()
     int val, managerNumber =-1;
     vector<string> managerPropertyList;
 
-    
     while(myFile.good())
     {
         getline(myFile, line); // gets first line from file
@@ -81,16 +80,8 @@ void Management::readFile()
             managerPropertyList.clear();
             continue;
         }
-        else if (line != "")
+        else if (line != "") // populate if line is not empty
         {
-            string name = managerPropertyList.at(0);
-            cout << name << endl;
-            int age = atoi(managerPropertyList.at(1).c_str());
-
-            double d = stod(managerPropertyList[4].c_str());
-            cout << d << endl;
-            int stopint = 1;
-
             double totalExpence = (stod(managerPropertyList.at(6).c_str()) + stod(managerPropertyList.at(7).c_str()) + stod(managerPropertyList.at(8).c_str()) + stod(managerPropertyList.at(9).c_str()) + stod(managerPropertyList.at(10).c_str()) + stod(managerPropertyList.at(11).c_str()));
             Manager newManager(
                 managerPropertyList.at(0).c_str(),
@@ -105,6 +96,7 @@ void Management::readFile()
             managerPropertyList.clear();
         }
     }
+    myFile.close();
 }
 
 //Scans through tenantArr[] and checks their payment status, if it's true it checks their rental fee and adds it to a total
