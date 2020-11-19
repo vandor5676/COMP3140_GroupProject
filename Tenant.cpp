@@ -53,6 +53,7 @@ Date Tenant::getmovingIn_Date() const
 }
 double Tenant::getMonthlyRent() const
 {
+    return(this->monthly_rent);
 }
 char *Tenant::getPaymentStatus() const
 {

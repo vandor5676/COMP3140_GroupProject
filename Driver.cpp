@@ -22,17 +22,21 @@ int main()
     if(shanesTests)
     {
         cout<< "Start"<<endl;
+        //test date
         Date d(1, 2, 2021);
-        //Management managment("Managers.csv");
+
+        //test readFile() using ManagementExtraFunctions
         ManagementExtraFunctions managment("Managers.csv", "Tenants.csv");
         cout<<managment.tenantPaymentHistory[0][0]<<endl; 
-        int stopint = 1;
+       
+       //test collectRentalFee function
+       cout<< "\ntest collectRentalFee function" <<endl;
+       managment.collectRentalFee();
+       cout << managment.getTotalRentCollected() << endl;
+       cout << managment.getTotalRentCollectedPerMonth(0) << endl;
+
+       int stopint = 1;
     }
     
-    // Manager m("Sarah",23,
-    //     "female",d,
-    //     100.01,50.01,
-    //     200.01);
-
     
 }
