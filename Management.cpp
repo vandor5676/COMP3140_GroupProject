@@ -68,11 +68,9 @@ void Management::readFile()
     {
         getline(myFile, line); // gets first line from file
         stringstream ss(line);
-        while(getline(ss, colname, ',')){ // cuts out values from line
-            
-            cout<< colname <<endl; 
-            managerPropertyList.push_back(colname);
-           
+        while(getline(ss, colname, ',')){ // cuts out values from line            
+            //cout<< colname <<endl; 
+            managerPropertyList.push_back(colname);           
         }
         if (managerNumber == -1) //first line is descriptions
         {
@@ -98,33 +96,38 @@ void Management::readFile()
     }
     myFile.close();
 }
-
 //Scans through tenantArr[] and checks their payment status, if it's true it checks their rental fee and adds it to a total
 //for the month as well as a total for 6 months. Does this process 6 times for each month.
 void Management::collectRentalFee()
 {
+   //this function is implemented in the derived class ManagementExtraFunctions
 }
 //Scans through the tenantArr[] and lists any tenants, along with their current index, with payment status set to false.
 void Management::listTenantsNotPay()
 {
+    //this function is implemented in the derived class ManagementExtraFunctions
 }
 //method to determine who hasn't paid their rent, then adds up the total missing rent for the month
 //then continues to add the total of missing rent for the past 6 months before printing it out.
 void Management::missingRental()
 {
+    //this function is implemented in the derived class ManagementExtraFunctions
 }
 //Scans through the managerArr[] and grabs the total expenses data held in every manager then adds them together and displays the total. It continues to do this for every month
 //as well as the past 6 months.
 void Management::totalExpense()
 {
+    //this function is implemented in the derived class ManagementExtraFunctions
 }
 //Scans through the managerArr[] and displays the total salary and bonus of every month as well as the total earned the past 6 months. It does this for every individual manager.
 void Management::managerSalary_bouns()
 {
+    //this function is implemented in the derived class ManagementExtraFunctions
 }
 //NetIncome = (total rent collection)- (managers expense)-(salary and bonus expense)
 void Management::netIncome()
 {
+    //this function is implemented in the derived class ManagementExtraFunctions
 }
 //Print out all tenants' profile.
 void Management::profile_tenant()
@@ -134,6 +137,7 @@ void Management::profile_tenant()
 void Management::profile_manager()
 {
 }
+
 //Mutators
 void Management::setFileName(const string &newFileName)
 {
