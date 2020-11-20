@@ -45,9 +45,14 @@ class Date
             void setMonth(const int& newMonth);
             //sets teh year
             void setYear(const int& newYear);
+
             //Accessors
+
+            //gets the day
             int getDay();
+            //gets the month
             int getMonth();
+            //gets the year
             int getYear();
             //Return full date information
             string getDate(); 

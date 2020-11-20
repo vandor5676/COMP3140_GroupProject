@@ -12,16 +12,23 @@
 class ManagementExtraFunctions : public Management
 {
 private:
-    double totalRentCollectedPerMonth[12] ={0}; //holds total rent from each tenant per month
-    double totalRentCollected = 0;         // holds total rent for 6 months
+    //holds total rent from each tenant per month
+    double totalRentCollectedPerMonth[12] ={0};
+    // holds total rent for 6 months
+    double totalRentCollected = 0;         
 
 public:
+    //holds all tenants 
     Tenant accessableTenantArr[100];     // cant access base class due to protection so this is our workaround i guess
+    //holds tanant payment information( like paid or not paid)
     string tenantPaymentHistory[100][6]; //this is going to hold all of the info from the .CSV file that i cant put in the Tenant class (just the payment status)
 
+    //the name of the tenant file
     string tenantFileName;
 
+    //constructs a object with all tennants and managers as well as functions to calulate information
     ManagementExtraFunctions(const string &newManagerFileName, const string &newTenantFileName);
+    //deconstructs a ManagementExtraFunctions object
     ~ManagementExtraFunctions();
 
     //functions
