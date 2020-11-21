@@ -6,6 +6,7 @@
  */
 
 #include "Tenant.h"
+#include <iostream>
 #ifndef DATE_DEF
 #include "Date.cpp"
 #endif
@@ -61,4 +62,5 @@ char *Tenant::getPaymentStatus() const
 //Print information of Tenant
 void Tenant::printInfo() const
 {
+    cout<<"Not implemented yet"<<endl;
 }

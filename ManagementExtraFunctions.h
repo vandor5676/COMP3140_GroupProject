@@ -23,6 +23,7 @@ public:
     //holds tanant payment information( like paid or not paid)
     string tenantPaymentHistory[100][6]; //this is going to hold all of the info from the .CSV file that i cant put in the Tenant class (just the payment status)
 
+
     //the name of the tenant file
     string tenantFileName;
 

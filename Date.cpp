@@ -35,9 +35,9 @@ int Date::getDay() { return day; }
 int Date::getMonth() { return month; }
 int Date::getYear() { return year; }
 //Return full date information
-string Date::getDate()
+string Date::getDate()  
 {
-    return (to_string(month) + "/" + to_string(getDay()) + "/" + to_string(year));
+    return (to_string(month) + "/" + to_string(day) + "/" + to_string(year));
 }
 //Converts a numbered month into a worded one. i.e. January, Febuary, March, April... etc
 string Date::converMonth(int m)

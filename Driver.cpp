@@ -7,36 +7,59 @@
 */
 #define _GLIBCXX_USE_CXX11_ABI 0
 #include <iostream>
-#include <string>  
+#include <string>
 #include "Manager.cpp"
-#include "Management.cpp" 
+#include "Management.cpp"
 #include "ManagementExtraFunctions.cpp"
 #include "Date.cpp"
-#include "Tenant.cpp" 
+#include "Tenant.cpp"
 
 using namespace std;
 
-int main() 
+int main()
 {
     bool shanesTests = true;
-    if(shanesTests)
+    if (shanesTests)
     {
-        cout<< "Start"<<endl;
+        cout << "Start" << endl;
         //test date
         Date d(1, 2, 2021);
 
-        //test readFile() using ManagementExtraFunctions
+        //test readFile() using ManagementExtraFunctions also tests populateTenantList() in ManagementExtraFunctions
+        cout << "\ntest readFile and ManagementExtraFunctions populateTenantList() class" << endl;
         ManagementExtraFunctions managment("Managers.csv", "Tenants.csv");
-        cout<<managment.tenantPaymentHistory[0][0]<<endl; 
-       
-       //test collectRentalFee function
-       cout<< "\ntest collectRentalFee function" <<endl;
-       managment.collectRentalFee();
-       cout << managment.getTotalRentCollected() << endl;
-       cout << managment.getTotalRentCollectedPerMonth(0) << endl;
+        managment.accessableTenantArr[2].printInfo();
+        cout << managment.tenantPaymentHistory[0][0] << endl;
 
-       int stopint = 1;
+        //test Date class
+        cout << "\ntest Date class" << endl;
+        Date newDate(11, 21, 2020);
+        cout << newDate.getDate() << endl;
+        newDate.setDay(1);
+        newDate.setYear(1999);
+        newDate.setMonth(2);
+        cout << newDate.getDate() << endl;
+
+        //test manager class
+        cout << "\ntest manager class" << endl;
+        Manager testmanager("Shnae", 24,
+                            "Male", newDate,
+                            100.0, 200.0,
+                            300.0);
+        testmanager.printInfo();
+        cout<<endl;
+        testmanager.setSalary(1.0);
+        testmanager.setMonthly_expense(2.0);
+        testmanager.setHired_Date(newDate);
+        testmanager.setBouns(3.0);
+        testmanager.printInfo();
+
+        //test collectRentalFee function
+        cout << "\ntest collectRentalFee function" << endl;
+        managment.collectRentalFee();
+        cout << managment.getTotalRentCollected() << endl;
+        cout << managment.getTotalRentCollectedPerMonth(0) << endl;
+
+        int stopint = 1;
     }
-    
-    
 }
