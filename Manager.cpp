@@ -15,6 +15,7 @@ Manager::Manager(const string &newName, const int &newAge, const string &newGend
     : Person(newName, newAge, newGender), bouns(newBouns), salary(newSalary), Monthly_expense(newMonthly_expense)
 {
     this->hired_date = Date(newHired_date);
+    this->hired_date.getDate();
 }
 Manager::Manager()
 {
@@ -44,6 +45,7 @@ void Manager::setMonthly_expense(const double &new_me)
 Date Manager::getHired_Date(Date date)
 {
     return (this->hired_date);
+    this->hired_date.getDate();
 }
 double Manager::getSalary(double newSalary)
 {
@@ -57,12 +59,18 @@ double Manager::getMonthly_expense(double new_me)
 {
     return (this->Monthly_expense);
 }
+void useablePrintInfo(Manager m)
+{
+    const Date newDate(1, 1, 1);
+    cout << "ManagerInfo" << endl;
+    cout << "Date: "+ m.getHired_Date(newDate).getDate() << endl;
+    cout << "Salary: " + to_string(m.getSalary(1.0)) << endl;
+    cout << "Bouns: " + to_string(m.getBouns(1)) << endl;
+    cout << "Monthly Expence: " + to_string(m.getMonthly_expense(1)) << endl;
+}
 //Print information of Manager
 void Manager::printInfo() const
 {
-    cout << "ManagerInfo" << endl;
-    cout << "Date: notImplemented" << endl;
-    cout << "Salary: " + to_string(salary) << endl;
-    cout << "Bouns: " + to_string(bouns) << endl;
-    cout << "Monthly Expence: " + to_string(Monthly_expense) << endl;
+    
+    useablePrintInfo(*this);
 }

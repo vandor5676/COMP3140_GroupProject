@@ -23,6 +23,7 @@ ManagementExtraFunctions::ManagementExtraFunctions(const string &newManagerFileN
 {
 
     populateTenantList(newTenantFileName);
+
 }
 
 ManagementExtraFunctions::~ManagementExtraFunctions()
@@ -117,7 +118,6 @@ void ManagementExtraFunctions::collectRentalFee()
             {
                 // add months rent to corresponding month
                 totalRentCollectedPerMonth[j] +=tenantRent;
-                //addTotalRentCollectedPerMonth(tenantRent, j); 
                 //calculate total rent for 6 months
                 totalRentCollected += tenantRent; 
             }
