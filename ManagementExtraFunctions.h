@@ -23,6 +23,10 @@ public:
     //holds tanant payment information( like paid or not paid)
     string tenantPaymentHistory[100][6]; //this is going to hold all of the info from the .CSV file that i cant put in the Tenant class (just the payment status)
 
+    //holds all manager monthly expense information
+    double managerMonthlyExpenses[2][12];
+    //Similar to the tenant issue, the manager array is not accessable so this is a workaround
+    Manager accessableManagerArr[2];
 
     //the name of the tenant file
     string tenantFileName;
@@ -35,6 +39,7 @@ public:
     //functions
     Date createDateFromString(string date);
     void populateTenantList(string tenantFileName);
+    void populateManagerList(string managerFileName);
     //Scans through tenantArr[] and checks their payment status, if it's true it checks their rental fee and adds it to a total
     //for the month as well as a total for 6 months. Does this process 6 times for each month.
     void collectRentalFee();
