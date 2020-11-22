@@ -25,11 +25,23 @@ Person::~Person()
 void Person :: setName(string& newName){
     this->name = newName;
 };
-void Person :: setAge(int& newAge){
-    this->age = newAge;
+void Person :: setAge(string& newAge){   
+    this->age = stoi(newAge);
 };
-void Person :: setGender(string& newGender){
-    this->gender = newGender;
+void Person :: setGender(int& newGender){
+   string gender;
+   if(newGender == 1)
+   {
+       gender = "Male";
+   }
+   else if (newGender == 2) {
+   gender = "Female";
+   }
+   else
+   {
+       gender = "Other";
+   }   
+    this->gender = gender;
 };
 int Person :: getAge() const{
     return age;
