@@ -211,16 +211,31 @@ void ManagementExtraFunctions::collectRentalFee()
 //Scans through the tenantArr[] and lists any tenants, along with their current index, with payment status set to false.
 void ManagementExtraFunctions::listTenantsNotPay()
 {
+    //getPaymentStatus() has the wrong return type in the header file and therefore is not implemented. 
+    //Due to this we can't easily implement this method without inheriting and adding to the Tenant class
 }
 //method to determine who hasn't paid their rent, then adds up the total missing rent for the month
 //then continues to add the total of missing rent for the past 6 months before printing it out.
 void ManagementExtraFunctions::missingRental()
 {
+    //Same issue as listTenantsNotPay()
 }
 //Scans through the managerArr[] and grabs the total expenses data held in every manager then adds them together and displays the total. It continues to do this for every month
 //as well as the past 6 months.
 void ManagementExtraFunctions::totalExpense()
 {
+    int managerMonthlyExpense, temp, allManagerTotalExpenses = 0;
+
+    for(int i = 0; i < 12; i++){
+        temp = managerMonthlyExpenses[1][i];
+        cout << "The total expenses for manager 1 for month number " << i << " are: " << temp << endl;
+        allManagerTotalExpenses += temp;
+        temp = managerMonthlyExpenses[2][i];
+        cout << "The total expenses for manager 2 for month number " << i << " are: " << temp << endl;
+        allManagerTotalExpenses += temp;
+        cout << "The total exepnses for all manager for month number " << i << " are: " << allManagerTotalExpenses << endl;
+
+    }
 }
 //Scans through the managerArr[] and displays the total salary and bonus of every month as well as the total earned the past 6 months. It does this for every individual manager.
 void ManagementExtraFunctions::managerSalary_bouns()
