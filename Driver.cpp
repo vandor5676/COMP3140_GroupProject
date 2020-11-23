@@ -8,10 +8,17 @@
 
 #include <iostream>
 #include <string>
-#include "ManagementExtraFunctions.h"
-#include "Date.h"
-#include "Tenant.h"
-using namespace std;
+// #include "ManagementExtraFunctions.h" 
+// #include "Date.h"
+// #include "Tenant.h" 
+
+#include "Management.cpp"   
+#include "Manager.cpp" 
+#include "ManagementExtraFunctions.cpp"   
+#include "Date.cpp"
+#include "Tenant.cpp" 
+#include "Person.cpp"
+using namespace std; 
 
 int main()
 {
@@ -99,7 +106,7 @@ int main()
     }
 
     bool LoganTest = true;
-    if(LoganTest){
+    if(LoganTest){ 
         ManagementExtraFunctions management2("Managers.csv", "Tenants.csv");
         management2.collectRentalFee();
         cout << "The profiles of all managers: " << endl;
