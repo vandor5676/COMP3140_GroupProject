@@ -8,6 +8,9 @@
 //Management needs more functions, this class provides them
 // add any functions you need here
 
+#ifndef MANAGEMNET_DEF 
+#include "Management.h" 
+#endif 
 #include "ManagementExtraFunctions.h"
 #include <vector>
 #include <utility>   // pair

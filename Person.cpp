@@ -6,6 +6,7 @@
 * Date: November 17, 2020
 */
 #include "Person.h"
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -54,5 +55,8 @@ string Person :: getGender() const{
 };
 
 void Person::printInfo() const{
+cout<<"Name: " + this->getName()<<endl;
+cout<<"Age: " + to_string(this->getAge())<<endl;
+cout<<"Gender: " + this->getGender()<<endl;
 
 };

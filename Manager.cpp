@@ -4,7 +4,9 @@
  *File Type: Imlementation File 
  *Date: 11/16/2020
  */
+#ifndef MANAGER_H 
 #include "Manager.h"
+#endif
 using namespace std;
 #include <iostream>
 
