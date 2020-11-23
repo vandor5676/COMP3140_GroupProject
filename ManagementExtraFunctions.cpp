@@ -85,7 +85,9 @@ void ManagementExtraFunctions::populateTenantList(string TenantCSV)
 
 void ManagementExtraFunctions :: populateManagerList(string managerFileName){
     string managerCSV1 = managerFileName;
-    string managerCSV2 = managerFileName + "2";
+    string fileType =  managerFileName.substr(managerFileName.find("."), (managerFileName.length()-1));
+    string managerCSV2 = managerFileName.substr(0, managerFileName.find(".")) + "2" + fileType;
+    bool isFirstLine = true;
     vector<pair<string, vector<int>>> result;
     ifstream myFile1(managerCSV1);
     ifstream myFile2(managerCSV2);
@@ -108,23 +110,24 @@ void ManagementExtraFunctions :: populateManagerList(string managerFileName){
             //cout << colname << endl;
             currentManager.push_back(colname);
         }
-        if (managerNumber == -1) // first line is descriptions
+        if (isFirstLine) // first line is descriptions
         {
             managerNumber++;
             currentManager.clear();
+            isFirstLine = false;
             continue;
         }
         else if (line != "") // populate if line is not empty
         {
-            managerMonthlyExpenses[managerNumber][0] = (stod(currentManager.at(7).c_str()));
-            managerMonthlyExpenses[managerNumber][1] = (stod(currentManager.at(8).c_str()));
-            managerMonthlyExpenses[managerNumber][2] = (stod(currentManager.at(9).c_str()));
-            managerMonthlyExpenses[managerNumber][3] = (stod(currentManager.at(10).c_str()));
-            managerMonthlyExpenses[managerNumber][4] = (stod(currentManager.at(11).c_str()));
-            managerMonthlyExpenses[managerNumber][5] = (stod(currentManager.at(12).c_str()));
+            managerMonthlyExpenses[managerNumber][0] = (stod(currentManager.at(6).c_str()));
+            managerMonthlyExpenses[managerNumber][1] = (stod(currentManager.at(7).c_str()));
+            managerMonthlyExpenses[managerNumber][2] = (stod(currentManager.at(8).c_str()));
+            managerMonthlyExpenses[managerNumber][3] = (stod(currentManager.at(9).c_str()));
+            managerMonthlyExpenses[managerNumber][4] = (stod(currentManager.at(10).c_str()));
+            managerMonthlyExpenses[managerNumber][5] = (stod(currentManager.at(11).c_str()));
 
             Manager newManager = Manager(currentManager.at(0).c_str(), stoi(currentManager.at(1).c_str()), currentManager.at(2).c_str(),
-            createDateFromString(currentManager.at(3).c_str()), stod(currentManager.at(4).c_str()), stod(currentManager.at(5).c_str()), stod(currentManager.at(6).c_str()));
+            createDateFromString(currentManager.at(3).c_str()), stod(currentManager.at(4).c_str()), stod(currentManager.at(5).c_str()), 0.0);
 
             accessableManagerArr[managerNumber] = newManager;
 
@@ -135,6 +138,8 @@ void ManagementExtraFunctions :: populateManagerList(string managerFileName){
     myFile1.close();
 
     //Gets the info from the second manager CSV file, only storing the monthly expenses
+    vector<string> currentManager2;
+    isFirstLine = true;
     while (myFile2.good()){
         getline(myFile2, line); // gets first line from file
         stringstream ss2(line);
@@ -142,25 +147,26 @@ void ManagementExtraFunctions :: populateManagerList(string managerFileName){
         { // cuts out values from line
 
             //cout << colname << endl;
-            currentManager.push_back(colname);
+            currentManager2.push_back(colname);
         }
-        if (managerNumber == -1) // first line is descriptions
+        if (isFirstLine) // first line is descriptions
         {
             managerNumber++;
-            currentManager.clear();
+            currentManager2.clear();
+            isFirstLine = false;
             continue;
         }
         else if (line != "") // populate if line is not empty
         {
-            managerMonthlyExpenses[managerNumber][6] = (stod(currentManager.at(7).c_str()));
-            managerMonthlyExpenses[managerNumber][7] = (stod(currentManager.at(8).c_str()));
-            managerMonthlyExpenses[managerNumber][8] = (stod(currentManager.at(9).c_str()));
-            managerMonthlyExpenses[managerNumber][9] = (stod(currentManager.at(10).c_str()));
-            managerMonthlyExpenses[managerNumber][10] = (stod(currentManager.at(11).c_str()));
-            managerMonthlyExpenses[managerNumber][11] = (stod(currentManager.at(12).c_str()));
+            managerMonthlyExpenses[managerNumber][6] = (stod(currentManager2.at(6).c_str()));
+            managerMonthlyExpenses[managerNumber][7] = (stod(currentManager2.at(7).c_str()));
+            managerMonthlyExpenses[managerNumber][8] = (stod(currentManager2.at(8).c_str()));
+            managerMonthlyExpenses[managerNumber][9] = (stod(currentManager2.at(9).c_str()));
+            managerMonthlyExpenses[managerNumber][10] = (stod(currentManager2.at(10).c_str()));
+            managerMonthlyExpenses[managerNumber][11] = (stod(currentManager2.at(11).c_str()));
 
             managerNumber++;
-            currentManager.clear();
+            currentManager2.clear();
         }
     }
     myFile1.close();
