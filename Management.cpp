@@ -145,4 +145,5 @@ void Management::setFileName(const string &newFileName)
 //Accessors
 string Management::getFileName()
 {
+    return fileName;
 }

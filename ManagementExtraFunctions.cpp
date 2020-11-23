@@ -23,7 +23,7 @@ ManagementExtraFunctions::ManagementExtraFunctions(const string &newManagerFileN
 {
 
     populateTenantList(newTenantFileName);
-
+    populateManagerList(newManagerFileName);
 }
 
 ManagementExtraFunctions::~ManagementExtraFunctions()
@@ -82,9 +82,12 @@ void ManagementExtraFunctions::populateTenantList(string TenantCSV)
     myFile.close();
 }
 
-void ManagementExtraFunctions :: populateManagerList(string managerFileName){
+void ManagementExtraFunctions ::populateManagerList(string managerFileName)
+{
     string managerCSV1 = managerFileName;
-    string managerCSV2 = managerFileName + "2";
+    string fileType = managerFileName.substr(managerFileName.find("."), (managerFileName.length() - 1));
+    string managerCSV2 = managerFileName.substr(0, managerFileName.find(".")) + "2" + fileType;
+    bool isFirstLine = true;
     vector<pair<string, vector<int>>> result;
     ifstream myFile1(managerCSV1);
     ifstream myFile2(managerCSV2);
@@ -98,7 +101,8 @@ void ManagementExtraFunctions :: populateManagerList(string managerFileName){
     vector<string> currentManager;
 
     //Gets all the info from the first CSV file, storing it.
-    while (myFile1.good()){
+    while (myFile1.good())
+    {
         getline(myFile1, line); // gets first line from file
         stringstream ss1(line);
         while (getline(ss1, colname, ','))
@@ -107,23 +111,24 @@ void ManagementExtraFunctions :: populateManagerList(string managerFileName){
             //cout << colname << endl;
             currentManager.push_back(colname);
         }
-        if (managerNumber == -1) // first line is descriptions
+        if (isFirstLine) // first line is descriptions
         {
             managerNumber++;
             currentManager.clear();
+            isFirstLine = false;
             continue;
         }
         else if (line != "") // populate if line is not empty
         {
-            managerMonthlyExpenses[managerNumber][0] = (stod(currentManager.at(7).c_str()));
-            managerMonthlyExpenses[managerNumber][1] = (stod(currentManager.at(8).c_str()));
-            managerMonthlyExpenses[managerNumber][2] = (stod(currentManager.at(9).c_str()));
-            managerMonthlyExpenses[managerNumber][3] = (stod(currentManager.at(10).c_str()));
-            managerMonthlyExpenses[managerNumber][4] = (stod(currentManager.at(11).c_str()));
-            managerMonthlyExpenses[managerNumber][5] = (stod(currentManager.at(12).c_str()));
+            managerMonthlyExpenses[managerNumber][0] = (stod(currentManager.at(6).c_str()));
+            managerMonthlyExpenses[managerNumber][1] = (stod(currentManager.at(7).c_str()));
+            managerMonthlyExpenses[managerNumber][2] = (stod(currentManager.at(8).c_str()));
+            managerMonthlyExpenses[managerNumber][3] = (stod(currentManager.at(9).c_str()));
+            managerMonthlyExpenses[managerNumber][4] = (stod(currentManager.at(10).c_str()));
+            managerMonthlyExpenses[managerNumber][5] = (stod(currentManager.at(11).c_str()));
 
             Manager newManager = Manager(currentManager.at(0).c_str(), stoi(currentManager.at(1).c_str()), currentManager.at(2).c_str(),
-            createDateFromString(currentManager.at(3).c_str()), stod(currentManager.at(4).c_str()), stod(currentManager.at(5).c_str()), stod(currentManager.at(6).c_str()));
+                                         createDateFromString(currentManager.at(3).c_str()), stod(currentManager.at(4).c_str()), stod(currentManager.at(5).c_str()), 0.0);
 
             accessableManagerArr[managerNumber] = newManager;
 
@@ -134,32 +139,36 @@ void ManagementExtraFunctions :: populateManagerList(string managerFileName){
     myFile1.close();
 
     //Gets the info from the second manager CSV file, only storing the monthly expenses
-    while (myFile2.good()){
+    vector<string> currentManager2;
+    isFirstLine = true;
+    while (myFile2.good())
+    {
         getline(myFile2, line); // gets first line from file
         stringstream ss2(line);
         while (getline(ss2, colname, ','))
         { // cuts out values from line
 
             //cout << colname << endl;
-            currentManager.push_back(colname);
+            currentManager2.push_back(colname);
         }
-        if (managerNumber == -1) // first line is descriptions
+        if (isFirstLine) // first line is descriptions
         {
             managerNumber++;
-            currentManager.clear();
+            currentManager2.clear();
+            isFirstLine = false;
             continue;
         }
         else if (line != "") // populate if line is not empty
         {
-            managerMonthlyExpenses[managerNumber][6] = (stod(currentManager.at(7).c_str()));
-            managerMonthlyExpenses[managerNumber][7] = (stod(currentManager.at(8).c_str()));
-            managerMonthlyExpenses[managerNumber][8] = (stod(currentManager.at(9).c_str()));
-            managerMonthlyExpenses[managerNumber][9] = (stod(currentManager.at(10).c_str()));
-            managerMonthlyExpenses[managerNumber][10] = (stod(currentManager.at(11).c_str()));
-            managerMonthlyExpenses[managerNumber][11] = (stod(currentManager.at(12).c_str()));
+            managerMonthlyExpenses[managerNumber][6] = (stod(currentManager2.at(6).c_str()));
+            managerMonthlyExpenses[managerNumber][7] = (stod(currentManager2.at(7).c_str()));
+            managerMonthlyExpenses[managerNumber][8] = (stod(currentManager2.at(8).c_str()));
+            managerMonthlyExpenses[managerNumber][9] = (stod(currentManager2.at(9).c_str()));
+            managerMonthlyExpenses[managerNumber][10] = (stod(currentManager2.at(10).c_str()));
+            managerMonthlyExpenses[managerNumber][11] = (stod(currentManager2.at(11).c_str()));
 
             managerNumber++;
-            currentManager.clear();
+            currentManager2.clear();
         }
     }
     myFile1.close();
@@ -191,34 +200,59 @@ Date ManagementExtraFunctions::createDateFromString(string date)
 void ManagementExtraFunctions::collectRentalFee()
 {
     //Faustino Wilhoit  ,93,M,Executive Assistant,79,6/15/2003,694.67,Not Paid,Not Paid,Paid,Not Paid,Paid,Paid
-    for (int i =0; i < 100; i++)
+    for (int i = 0; i < 100; i++)
     {
         double tenantRent = accessableTenantArr[i].getMonthlyRent();
-        for (int j =0; j < 6; j++)
+        for (int j = 0; j < 6; j++)
         {
             double tenantMonthlyRent = 0;
             if (tenantPaymentHistory[i][j] == "Paid")
             {
                 // add months rent to corresponding month
-                totalRentCollectedPerMonth[j] +=tenantRent;
+                totalRentCollectedPerMonth[j] += tenantRent;
                 //calculate total rent for 6 months
-                totalRentCollected += tenantRent; 
+                totalRentCollected += tenantRent;
             }
-           
         }
     }
 }
 //Scans through the tenantArr[] and lists any tenants, along with their current index, with payment status set to false.
 void ManagementExtraFunctions::listTenantsNotPay()
 {
-    //getPaymentStatus() has the wrong return type in the header file and therefore is not implemented. 
-    //Due to this we can't easily implement this method without inheriting and adding to the Tenant class
+    for (int i = 0; i < 100; i++)
+    {
+        for (int j = 0; j < 6; j++)
+        {
+            if (tenantPaymentHistory[i][j] == "Not Paid")
+            {
+                accessableTenantArr[i].printInfo();
+                cout << "Curent index: " + to_string(i) << endl;
+                cout << endl;
+                break;
+            }
+        }
+    }
 }
 //method to determine who hasn't paid their rent, then adds up the total missing rent for the month
 //then continues to add the total of missing rent for the past 6 months before printing it out.
 void ManagementExtraFunctions::missingRental()
 {
-    //Same issue as listTenantsNotPay()
+    //Faustino Wilhoit  ,93,M,Executive Assistant,79,6/15/2003,694.67,Not Paid,Not Paid,Paid,Not Paid,Paid,Paid
+    for (int i = 0; i < 100; i++)
+    {
+        double tenantRent = accessableTenantArr[i].getMonthlyRent();
+        for (int j = 0; j < 6; j++)
+        {
+            double tenantMonthlyRent = 0;
+            if (tenantPaymentHistory[i][j] == "Not Paid")
+            {
+                // add months rent to corresponding month
+                totalUnPaidRentCollectedPerMonth[j] += tenantRent;
+                //calculate total rent for 6 months
+                totalUnPaidRentCollected += tenantRent;
+            }
+        }
+    }
 }
 //Scans through the managerArr[] and grabs the total expenses data held in every manager then adds them together and displays the total. It continues to do this for every month
 //as well as the past 6 months.
@@ -226,7 +260,8 @@ void ManagementExtraFunctions::totalExpense()
 {
     int managerMonthlyExpense, temp, allManagerTotalExpenses = 0;
 
-    for(int i = 0; i < 12; i++){
+    for (int i = 0; i < 12; i++)
+    {
         temp = managerMonthlyExpenses[1][i];
         cout << "The total expenses for manager 1 for month number " << i << " are: " << temp << endl;
         allManagerTotalExpenses += temp;
@@ -234,7 +269,6 @@ void ManagementExtraFunctions::totalExpense()
         cout << "The total expenses for manager 2 for month number " << i << " are: " << temp << endl;
         allManagerTotalExpenses += temp;
         cout << "The total exepnses for all manager for month number " << i << " are: " << allManagerTotalExpenses << endl;
-
     }
 }
 //Scans through the managerArr[] and displays the total salary and bonus of every month as well as the total earned the past 6 months. It does this for every individual manager.
@@ -257,6 +291,8 @@ void ManagementExtraFunctions::profile_manager()
 //
 // getter setter
 //
+
+//paid rent
 double ManagementExtraFunctions::getTotalRentCollectedPerMonth(int i)
 {
     return this->totalRentCollectedPerMonth[i];
@@ -267,7 +303,7 @@ void ManagementExtraFunctions::setTotalRentCollectedPerMonth(double totalRentCol
 }
 void ManagementExtraFunctions::addTotalRentCollectedPerMonth(double totalRentCollected, int month)
 {
-    this->totalRentCollectedPerMonth[month] += totalRentCollected; 
+    this->totalRentCollectedPerMonth[month] += totalRentCollected;
 }
 
 double ManagementExtraFunctions::getTotalRentCollected()
@@ -277,4 +313,24 @@ double ManagementExtraFunctions::getTotalRentCollected()
 void ManagementExtraFunctions::setTotalRentCollected(double totalRentCollected)
 {
     this->totalRentCollected = totalRentCollected;
+}
+
+//unpaid rent
+
+double ManagementExtraFunctions::getTotalUnPaidRentCollectedPerMonth(int i)
+{
+    return this->totalUnPaidRentCollectedPerMonth[i];
+}
+void ManagementExtraFunctions::setTotalUnPaidRentCollectedPerMonth(double totalRentNotCollected, int month)
+{
+    this->totalUnPaidRentCollectedPerMonth[month] = totalRentNotCollected;
+}
+
+double ManagementExtraFunctions::getTotalUnPaidRentCollected()
+{
+    return this->totalUnPaidRentCollected;
+}
+void ManagementExtraFunctions::setTotalUnPaidRentCollected(double totalUnPaidRentCollected)
+{
+    this->totalUnPaidRentCollected = totalUnPaidRentCollected;
 }

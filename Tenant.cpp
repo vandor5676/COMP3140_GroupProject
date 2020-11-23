@@ -6,6 +6,7 @@ Tenant::Tenant(const string& newName, const int& newAge,
 	const string& newGender, const string& newJob,
 	const int& newUnitNumber, Date newMoveIn_Day,
 	const double& newMonthly_rent, const char& newPayment_status)
+    :Person(newName, newAge, newGender)
 {
 	this->job = newJob;
 	this->unitNumber = newUnitNumber;
@@ -70,10 +71,22 @@ char* Tenant::getPaymentStatus() const
 {
 	
 }
+void uesablePrint(Tenant p)
+{
+cout << "Tenant Info:" << endl;
 
+	cout << "Tenant Name:"+ p.getName() << endl;
+	cout << "Tenant Age:"+ to_string(p.getAge()) << endl;
+	cout << "Tenant Gender:"+ p.getGender() << endl;
+	cout << "Tenant Job:"+ p.getJob() << endl;
+	cout << "Tenant UnitNumber:"+ to_string(p.getUnitNumber()) << endl;
+	cout << "Tenant MoveIn_Day:"+ p.getmovingIn_Date().getDate() << endl;
+	cout << "Tenant Monthly_rent:"+ to_string(p.getMonthlyRent()) << endl;
+}
 //Print information of Tenant
 void Tenant::printInfo() const
 {
-	cout << "Tenant Info:" << endl;
-
+	uesablePrint(*this);
+    
+ 
 }

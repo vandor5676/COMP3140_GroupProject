@@ -5,7 +5,7 @@
 *
 * Date: 9/25/2020
 */
-#define _GLIBCXX_USE_CXX11_ABI 0
+
 #include <iostream>
 #include <string>
 #include "Manager.cpp"
@@ -13,23 +13,24 @@
 #include "ManagementExtraFunctions.cpp"
 #include "Date.cpp"
 #include "Tenant.cpp"
-
+#include "Person.cpp"
 using namespace std;
 
 int main()
 {
     bool shanesTests = true;
-    if (shanesTests)
+    if (shanesTests == true)
     {
         cout << "Start" << endl;
         //test date
         Date d(1, 2, 2021);
 
-        //test readFile() using ManagementExtraFunctions also tests populateTenantList() in ManagementExtraFunctions
+        //test readFile() using ManagementExtraFunctions also tests populateTenantList() and populateManagerList() in ManagementExtraFunctions
         cout << "\ntest readFile and ManagementExtraFunctions populateTenantList() class" << endl;
-        ManagementExtraFunctions managment("Managers.csv", "Tenants.csv");
-        managment.accessableTenantArr[2].printInfo();
-        cout << managment.tenantPaymentHistory[0][0] << endl;
+        ManagementExtraFunctions management("Managers.csv", "Tenants.csv");
+        management.accessableTenantArr[2].printInfo();
+        cout << management.tenantPaymentHistory[0][0] << endl
+             << endl;
 
         //test Date class
         cout << "\ntest Date class" << endl;
@@ -42,12 +43,12 @@ int main()
 
         //test manager class
         cout << "\ntest manager class" << endl;
-        Manager testmanager("Shnae", 24,
+        Manager testmanager("Shane", 24,
                             "Male", newDate,
                             100.0, 200.0,
                             300.0);
         testmanager.printInfo();
-        cout<<endl;
+        cout << endl;
         testmanager.setSalary(1.0);
         testmanager.setMonthly_expense(2.0);
         testmanager.setHired_Date(newDate);
@@ -56,10 +57,21 @@ int main()
 
         //test collectRentalFee function
         cout << "\ntest collectRentalFee function" << endl;
-        managment.collectRentalFee();
-        cout << managment.getTotalRentCollected() << endl;
-        cout << managment.getTotalRentCollectedPerMonth(0) << endl;
+        management.collectRentalFee();
+        cout << management.getTotalRentCollected() << endl;
+        cout << management.getTotalRentCollectedPerMonth(0) << endl;
 
-        int stopint = 1;
+        //test listTenantsNotPaid()
+        cout << "\ntest listTenantsNotPay function" << endl;
+        management.listTenantsNotPay();
+
+        //test missingRental function
+        cout << "\ntest missingRental function" << endl;
+        management.missingRental();
+        cout << management.getTotalUnPaidRentCollected() << endl;
+        cout << management.getTotalUnPaidRentCollectedPerMonth(1) << endl;
     }
+
+    // system("pause");
+    return 0;
 }
