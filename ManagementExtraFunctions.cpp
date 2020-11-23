@@ -138,7 +138,10 @@ void ManagementExtraFunctions ::populateManagerList(string managerFileName)
     }
     myFile1.close();
 
-    //Gets the info from the second manager CSV file, only storing the monthly expenses
+    //Commented out as we are only working with 6 months right now
+    //
+    //Gets the info from the second manager CSV file, only storing the monthly expenses. 
+    /*
     vector<string> currentManager2;
     isFirstLine = true;
     while (myFile2.good())
@@ -171,7 +174,7 @@ void ManagementExtraFunctions ::populateManagerList(string managerFileName)
             currentManager2.clear();
         }
     }
-    myFile1.close();
+    myFile2.close();*/
 }
 
 Date ManagementExtraFunctions::createDateFromString(string date)
@@ -258,18 +261,21 @@ void ManagementExtraFunctions::missingRental()
 //as well as the past 6 months.
 void ManagementExtraFunctions::totalExpense()
 {
-    int managerMonthlyExpense, temp, allManagerTotalExpenses = 0;
+    int temp, managersMonthlyExpense = 0;
 
     for (int i = 0; i < 12; i++)
     {
         temp = managerMonthlyExpenses[1][i];
+        managersMonthlyExpense += temp;
         cout << "The total expenses for manager 1 for month number " << i << " are: " << temp << endl;
-        allManagerTotalExpenses += temp;
         temp = managerMonthlyExpenses[2][i];
+        managersMonthlyExpense += temp;
         cout << "The total expenses for manager 2 for month number " << i << " are: " << temp << endl;
-        allManagerTotalExpenses += temp;
-        cout << "The total exepnses for all manager for month number " << i << " are: " << allManagerTotalExpenses << endl;
+        cout << "The total exepnses for all manager for month number " << i << " are: " << managersMonthlyExpense << endl;
+        totalManagerExpenses += managersMonthlyExpense;
     }
+
+
 }
 //Scans through the managerArr[] and displays the total salary and bonus of every month as well as the total earned the past 6 months. It does this for every individual manager.
 void ManagementExtraFunctions::managerSalary_bouns()
@@ -286,6 +292,8 @@ void ManagementExtraFunctions::managerSalary_bouns()
         cout << "Bonus is " << temp << endl
         << endl;
     }
+    totalManagerSalary = totSalary;
+    totalManagerBonus = totBonus;
     cout << "The total salary for all managers for the last 6 months is: " << totSalary << endl;
     cout << "The total bonus for all managers for the last 6 months is: " << totBonus << endl;
 
@@ -294,7 +302,7 @@ void ManagementExtraFunctions::managerSalary_bouns()
 //NetIncome = (total rent collection)- (managers expense)-(salary and bonus expense)
 void ManagementExtraFunctions::netIncome()
 {
-
+    int netIncome = totalRentCollected - (totalManagerExpenses + totalManagerSalary + totalManagerBonus);
 }
 //Print out all tenants' profile.
 void ManagementExtraFunctions::profile_tenant()

@@ -25,6 +25,13 @@ private:
     // holds uncolected total rent for 6 months
     double totalUnPaidRentCollected = 0;
 
+    //Holds the total expenses for all manager
+    double totalManagerExpenses = 0;
+    //Holds the total salaries of all managers
+    double totalManagerSalary = 0;
+    //Holds the total bonuses for all managers
+    double totalManagerBonus = 0;
+
 public:
     //holds all tenants
     Tenant accessableTenantArr[100]; // cant access base class due to protection so this is our workaround i guess
