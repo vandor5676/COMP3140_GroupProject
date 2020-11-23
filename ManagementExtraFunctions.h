@@ -4,9 +4,10 @@
  *File Type: Interface File 
  *Date: 11/13/2020
  */
-#ifndef MANAGEMNET_DEF
+#ifndef MANAGEMENTEXTRAFUNCTIONS_H
+#define MANAGEMENTEXTRAFUNCTIONS_H
 #include "Management.h"
-#endif
+
 #include <list>
 #include <iterator>
 class ManagementExtraFunctions : public Management
@@ -71,3 +72,5 @@ public:
     double getTotalRentCollected();
     void setTotalRentCollected(double totalRentCollected);
 };
+
+#endif

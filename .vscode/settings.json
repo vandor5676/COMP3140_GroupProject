@@ -44,6 +44,7 @@
         "vector": "cpp",
         "fstream": "cpp",
         "sstream": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "string_view": "cpp"
     }
 }
