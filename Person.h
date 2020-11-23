@@ -30,6 +30,6 @@ class Person
         int getAge() const;
         string getName() const;
         string getGender() const;
-        //virtual void printInfo() const;  //had to comment out, you can uncoment this 
+        virtual void printInfo() const;
 };
 #endif

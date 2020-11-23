@@ -52,3 +52,7 @@ string Person :: getName() const{
 string Person :: getGender() const{
     return gender;
 };
+
+void Person::printInfo() const{
+
+};
