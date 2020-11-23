@@ -10,7 +10,7 @@ using namespace std;
 
 //Constructors
 Manager::Manager(const string &newName, const int &newAge, const string &newGender, const Date &newHired_date, const double &newSalary, const double &newBouns, const double &newMonthly_expense)
-    : Person(newName, newAge, newGender), bouns(newBouns), salary(newSalary), Monthly_expense(newMonthly_expense)
+    : Person(newName, newAge, newGender), bouns(newBouns), salary(newSalary), monthly_expense(newMonthly_expense)
 {
     this->hired_date = Date(newHired_date);
     this->hired_date.getDate();
@@ -37,7 +37,7 @@ void Manager::setBouns(const double &newBouns)
 }
 void Manager::setMonthly_expense(const double &new_me)
 {
-    this->Monthly_expense = new_me;
+    this->monthly_expense = new_me;
 }
 //Accessors
 Date Manager::getHired_Date(Date date)
@@ -55,7 +55,7 @@ double Manager::getBouns(double newBouns)
 }
 double Manager::getMonthly_expense(double new_me)
 {
-    return (this->Monthly_expense);
+    return (this->monthly_expense);
 }
 void useablePrintInfo(Manager m)
 {

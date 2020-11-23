@@ -6,7 +6,7 @@
  */
 #ifndef MANAGEMENT_DEF
 #define MANAGEMNET_DEF
-#include "Tenant.h" // had to rename tenant.h to Tenant.h
+#include "Tenant.h"
 #include "Manager.h"
 #include <string>
 
