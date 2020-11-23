@@ -6,6 +6,9 @@
  */
 
 #include "Management.h"
+#ifndef MANAGER_H
+#include "Manager.cpp"
+#endif
 #include <iostream>
 using namespace std; 
 #include <string>

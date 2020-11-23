@@ -5,11 +5,15 @@
 *
 * Date: 9/25/2020
 */
-#include "Date.h"
-#include "ManagementExtraFunctions.h"
-#include "Tenant.h"
+
 #include <iostream>
 #include <string>
+#include "Manager.cpp"
+#include "Management.cpp"
+#include "ManagementExtraFunctions.cpp"
+#include "Date.cpp"
+#include "Tenant.cpp"
+#include "Person.cpp"
 using namespace std;
 
 int main()

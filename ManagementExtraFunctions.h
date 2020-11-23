@@ -6,7 +6,10 @@
  */
 #ifndef MANAGEMENTEXTRAFUNCTIONS_H
 #define MANAGEMENTEXTRAFUNCTIONS_H
+#ifndef MANAGEMNET_DEF
 #include "Management.h"
+#endif
+
 
 #include <list>
 #include <iterator>
