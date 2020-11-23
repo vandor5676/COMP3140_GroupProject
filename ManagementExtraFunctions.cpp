@@ -294,14 +294,21 @@ void ManagementExtraFunctions::managerSalary_bouns()
 //NetIncome = (total rent collection)- (managers expense)-(salary and bonus expense)
 void ManagementExtraFunctions::netIncome()
 {
+
 }
 //Print out all tenants' profile.
 void ManagementExtraFunctions::profile_tenant()
 {
+    for(int i = 0; i < 100; i++){
+        accessableTenantArr[i].printInfo();
+    }
 }
 //Print out all Manager' profile.
 void ManagementExtraFunctions::profile_manager()
 {
+        for(int i = 0; i < 100; i++){
+        accessableManagerArr[i].printInfo();
+    }
 }
 
 //
