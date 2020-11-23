@@ -43,7 +43,7 @@ void Tenant::setMonthlyRent(const double& newMonthly_rent)
 
 void Tenant::setPaymentStatus(const char& newPayment_status)
 {
-	
+	// a diferent method of obtaining payment status has been implemented in ManagementExtraFunctions
 }
 
 //Accessors
@@ -69,7 +69,7 @@ double Tenant::getMonthlyRent() const
 
 char* Tenant::getPaymentStatus() const
 {
-	
+	// a diferent method of obtaining payment status has been implemented in ManagementExtraFunctions
 }
 void uesablePrint(Tenant p)
 {

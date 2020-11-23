@@ -16,7 +16,7 @@ using namespace std;
 int main()
 {
     bool shanesTests = true;
-    if (shanesTests == true)
+    if (shanesTests)
     {
         cout << "Start" << endl;
         //test date
@@ -67,10 +67,39 @@ int main()
         management.missingRental();
         cout << management.getTotalUnPaidRentCollected() << endl;
         cout << management.getTotalUnPaidRentCollectedPerMonth(1) << endl;
+
+        //test Person class
+        cout << "\ntest Person class" << endl;
+        Person p("Shane", 24, "Male");
+        string  name = "notShane" ;
+        p.setName(name);  
+        string age = "1"; 
+        p.setAge(age);
+        int gender = 2; 
+        p.setGender(gender);
+        p.printInfo();
+
+//test Tenant class
+        cout << "\ntest Tenant class" << endl;
+    Tenant t("shane",24,"Male", "Programmer", 100,newDate, 1.0, 'y' );
+    string name2 = "newName";
+    t.setName(name2);
+    string age2 = "1"; 
+    t.setAge(age2);
+    int gender2 = 3; 
+    t.setGender(gender2);
+    t.setJob("newJob");
+    t.setUnitNumber(1);
+    t.setMonthlyRent(2.0);
+    t.setPaymentStatus('n');
+    t.printInfo();
+
+
+        
     }
 
     bool LoganTest = true;
-    if(LoganTest){
+    if(LoganTest){ 
         ManagementExtraFunctions management2("Managers.csv", "Tenants.csv");
         management2.collectRentalFee();
         cout << "The profiles of all managers: " << endl;
