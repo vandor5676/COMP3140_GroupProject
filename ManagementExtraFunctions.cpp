@@ -82,6 +82,89 @@ void ManagementExtraFunctions::populateTenantList(string TenantCSV)
     myFile.close();
 }
 
+void ManagementExtraFunctions :: populateManagerList(string managerFileName){
+    string managerCSV1 = managerFileName;
+    string managerCSV2 = managerFileName + "2";
+    vector<pair<string, vector<int>>> result;
+    ifstream myFile1(managerCSV1);
+    ifstream myFile2(managerCSV2);
+
+    if (!myFile1.is_open())
+        throw runtime_error("Could not open file"); // change error type?
+    if (!myFile2.is_open())
+        throw runtime_error("Could not open file"); // change error type?
+    string line, colname;
+    int managerNumber = -1;
+    vector<string> currentManager;
+
+    //Gets all the info from the first CSV file, storing it.
+    while (myFile1.good()){
+        getline(myFile1, line); // gets first line from file
+        stringstream ss1(line);
+        while (getline(ss1, colname, ','))
+        { // cuts out values from line
+
+            //cout << colname << endl;
+            currentManager.push_back(colname);
+        }
+        if (managerNumber == -1) // first line is descriptions
+        {
+            managerNumber++;
+            currentManager.clear();
+            continue;
+        }
+        else if (line != "") // populate if line is not empty
+        {
+            managerMonthlyExpenses[managerNumber][0] = (stod(currentManager.at(7).c_str()));
+            managerMonthlyExpenses[managerNumber][1] = (stod(currentManager.at(8).c_str()));
+            managerMonthlyExpenses[managerNumber][2] = (stod(currentManager.at(9).c_str()));
+            managerMonthlyExpenses[managerNumber][3] = (stod(currentManager.at(10).c_str()));
+            managerMonthlyExpenses[managerNumber][4] = (stod(currentManager.at(11).c_str()));
+            managerMonthlyExpenses[managerNumber][5] = (stod(currentManager.at(12).c_str()));
+
+            Manager newManager = Manager(currentManager.at(0).c_str(), stoi(currentManager.at(1).c_str()), currentManager.at(2).c_str(),
+            createDateFromString(currentManager.at(3).c_str()), stod(currentManager.at(4).c_str()), stod(currentManager.at(5).c_str()), stod(currentManager.at(6).c_str()));
+
+            accessableManagerArr[managerNumber] = newManager;
+
+            managerNumber++;
+            currentManager.clear();
+        }
+    }
+    myFile1.close();
+
+    //Gets the info from the second manager CSV file, only storing the monthly expenses
+    while (myFile2.good()){
+        getline(myFile2, line); // gets first line from file
+        stringstream ss2(line);
+        while (getline(ss2, colname, ','))
+        { // cuts out values from line
+
+            //cout << colname << endl;
+            currentManager.push_back(colname);
+        }
+        if (managerNumber == -1) // first line is descriptions
+        {
+            managerNumber++;
+            currentManager.clear();
+            continue;
+        }
+        else if (line != "") // populate if line is not empty
+        {
+            managerMonthlyExpenses[managerNumber][6] = (stod(currentManager.at(7).c_str()));
+            managerMonthlyExpenses[managerNumber][7] = (stod(currentManager.at(8).c_str()));
+            managerMonthlyExpenses[managerNumber][8] = (stod(currentManager.at(9).c_str()));
+            managerMonthlyExpenses[managerNumber][9] = (stod(currentManager.at(10).c_str()));
+            managerMonthlyExpenses[managerNumber][10] = (stod(currentManager.at(11).c_str()));
+            managerMonthlyExpenses[managerNumber][11] = (stod(currentManager.at(12).c_str()));
+
+            managerNumber++;
+            currentManager.clear();
+        }
+    }
+    myFile1.close();
+}
+
 Date ManagementExtraFunctions::createDateFromString(string date)
 {
 
@@ -128,16 +211,31 @@ void ManagementExtraFunctions::collectRentalFee()
 //Scans through the tenantArr[] and lists any tenants, along with their current index, with payment status set to false.
 void ManagementExtraFunctions::listTenantsNotPay()
 {
+    //getPaymentStatus() has the wrong return type in the header file and therefore is not implemented. 
+    //Due to this we can't easily implement this method without inheriting and adding to the Tenant class
 }
 //method to determine who hasn't paid their rent, then adds up the total missing rent for the month
 //then continues to add the total of missing rent for the past 6 months before printing it out.
 void ManagementExtraFunctions::missingRental()
 {
+    //Same issue as listTenantsNotPay()
 }
 //Scans through the managerArr[] and grabs the total expenses data held in every manager then adds them together and displays the total. It continues to do this for every month
 //as well as the past 6 months.
 void ManagementExtraFunctions::totalExpense()
 {
+    int managerMonthlyExpense, temp, allManagerTotalExpenses = 0;
+
+    for(int i = 0; i < 12; i++){
+        temp = managerMonthlyExpenses[1][i];
+        cout << "The total expenses for manager 1 for month number " << i << " are: " << temp << endl;
+        allManagerTotalExpenses += temp;
+        temp = managerMonthlyExpenses[2][i];
+        cout << "The total expenses for manager 2 for month number " << i << " are: " << temp << endl;
+        allManagerTotalExpenses += temp;
+        cout << "The total exepnses for all manager for month number " << i << " are: " << allManagerTotalExpenses << endl;
+
+    }
 }
 //Scans through the managerArr[] and displays the total salary and bonus of every month as well as the total earned the past 6 months. It does this for every individual manager.
 void ManagementExtraFunctions::managerSalary_bouns()
