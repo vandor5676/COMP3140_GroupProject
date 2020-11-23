@@ -10,20 +10,24 @@
 #include "Management.h"
 #endif
 
-
 #include <list>
 #include <iterator>
 class ManagementExtraFunctions : public Management
 {
 private:
     //holds total rent from each tenant per month
-    double totalRentCollectedPerMonth[12] ={0};
+    double totalRentCollectedPerMonth[12] = {0};
     // holds total rent for 6 months
-    double totalRentCollected = 0;         
+    double totalRentCollected = 0;
+
+    //holds total uncolected rent from each tenant per month
+    double totalUnPaidRentCollectedPerMonth[12] = {0};
+    // holds uncolected total rent for 6 months
+    double totalUnPaidRentCollected = 0;
 
 public:
-    //holds all tenants 
-    Tenant accessableTenantArr[100];     // cant access base class due to protection so this is our workaround i guess
+    //holds all tenants
+    Tenant accessableTenantArr[100]; // cant access base class due to protection so this is our workaround i guess
     //holds tanant payment information( like paid or not paid)
     string tenantPaymentHistory[100][6]; //this is going to hold all of the info from the .CSV file that i cant put in the Tenant class (just the payment status)
 
@@ -71,9 +75,15 @@ public:
     //get and set the total rent per month and the total rent in 6 months
     double getTotalRentCollectedPerMonth(int i);
     void setTotalRentCollectedPerMonth(double totalRentCollected, int month);
-    void addTotalRentCollectedPerMonth(double totalRentCollected, int month);//used to total up totalRentCollectedPerMonth array
+    void addTotalRentCollectedPerMonth(double totalRentCollected, int month); //used to total up totalRentCollectedPerMonth array
     double getTotalRentCollected();
     void setTotalRentCollected(double totalRentCollected);
+
+    //get and set the total unpaid rent per month and the total rent in 6 months
+    double getTotalUnPaidRentCollectedPerMonth(int i);
+    void setTotalUnPaidRentCollectedPerMonth(double totalRentNotCollected, int month);
+    double getTotalUnPaidRentCollected();
+    void setTotalUnPaidRentCollected(double totalUnPaidRentCollected);
 };
 
 #endif
