@@ -61,12 +61,12 @@ int main()
         cout << management.getTotalRentCollected() << endl;
         cout << management.getTotalRentCollectedPerMonth(0) << endl;
 
-        //test lestTenantsNotPaid()
+        //test listTenantsNotPaid()
         cout << "\ntest listTenantsNotPay function" << endl;
         management.listTenantsNotPay();
 
         //test missingRental function
-        cout << "\ntest collectRentalFee function" << endl;
+        cout << "\ntest missingRental function" << endl;
         management.missingRental();
         cout << management.getTotalUnPaidRentCollected() << endl;
         cout << management.getTotalUnPaidRentCollectedPerMonth(1) << endl;
