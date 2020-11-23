@@ -8,12 +8,9 @@
 
 #include <iostream>
 #include <string>
-#include "Manager.cpp"
-#include "Management.cpp"
-#include "ManagementExtraFunctions.cpp"
-#include "Date.cpp"
-#include "Tenant.cpp"
-#include "Person.cpp"
+#include "ManagementExtraFunctions.h"
+#include "Date.h"
+#include "Tenant.h"
 using namespace std;
 
 int main()

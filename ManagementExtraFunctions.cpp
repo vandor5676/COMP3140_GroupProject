@@ -274,6 +274,22 @@ void ManagementExtraFunctions::totalExpense()
 //Scans through the managerArr[] and displays the total salary and bonus of every month as well as the total earned the past 6 months. It does this for every individual manager.
 void ManagementExtraFunctions::managerSalary_bouns()
 {
+    int temp, totBonus = 0, totSalary = 0;
+    for (int i = 0; i < 2; i++)
+    {   
+        cout << "Information for manager " << accessableManagerArr[i].getName() << endl;
+        temp = accessableManagerArr[i].getSalary(0);
+        totSalary += temp;
+        cout << "Salary is: " << temp << endl;
+        temp = accessableManagerArr[i].getBouns(0);
+        totBonus += temp;
+        cout << "Bonus is " << temp << endl
+        << endl;
+    }
+    cout << "The total salary for all managers for the last 6 months is: " << totSalary << endl;
+    cout << "The total bonus for all managers for the last 6 months is: " << totBonus << endl;
+
+    //The bonus is constant for both CSV files and doesn't change month to month, so no point in displaying this information monthly
 }
 //NetIncome = (total rent collection)- (managers expense)-(salary and bonus expense)
 void ManagementExtraFunctions::netIncome()
