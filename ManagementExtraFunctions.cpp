@@ -365,3 +365,23 @@ void ManagementExtraFunctions::setTotalUnPaidRentCollected(double totalUnPaidRen
 {
     this->totalUnPaidRentCollected = totalUnPaidRentCollected;
 }
+
+//Manager Getters and Setters
+    double  ManagementExtraFunctions::getTotalManagersExpense(){
+        return totalManagerExpenses;
+    };
+    double  ManagementExtraFunctions::getTotalManagersSalaries(){
+        return totalManagerSalary;
+    };
+    double  ManagementExtraFunctions::getTotalManagersBonuses(){
+        return totalManagerBonus;
+    };
+    void  ManagementExtraFunctions::setTotalManagersBonuses(double bonuses){
+        this->totalManagerBonus = bonuses;
+    };
+    void  ManagementExtraFunctions::setTotalManagersSalaries(double salaries){
+        this->totalManagerSalary = salaries;
+    };
+    void  ManagementExtraFunctions::setTotalManagersExpenses(double expenses){
+        this->totalManagerExpenses = expenses;
+    };

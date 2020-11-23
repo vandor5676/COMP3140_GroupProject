@@ -91,6 +91,14 @@ public:
     void setTotalUnPaidRentCollectedPerMonth(double totalRentNotCollected, int month);
     double getTotalUnPaidRentCollected();
     void setTotalUnPaidRentCollected(double totalUnPaidRentCollected);
+
+    //get and set the totals for managers
+    double getTotalManagersExpense();
+    double getTotalManagersSalaries();
+    double getTotalManagersBonuses();
+    void setTotalManagersBonuses(double bonuses);
+    void setTotalManagersSalaries(double salaries);
+    void setTotalManagersExpenses(double expenses);
 };
 
 #endif
