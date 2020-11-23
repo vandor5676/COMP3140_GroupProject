@@ -23,6 +23,7 @@ ManagementExtraFunctions::ManagementExtraFunctions(const string &newManagerFileN
 {
 
     populateTenantList(newTenantFileName);
+    populateManagerList(newManagerFileName);
 
 }
 

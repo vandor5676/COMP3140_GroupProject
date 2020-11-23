@@ -6,9 +6,6 @@
  */
 
 #include "Management.h"
-#ifndef MANAGER_H
-#include "Manager.cpp"
-#endif
 #include <iostream>
 using namespace std; 
 #include <string>
@@ -145,4 +142,5 @@ void Management::setFileName(const string &newFileName)
 //Accessors
 string Management::getFileName()
 {
+    return fileName;
 }

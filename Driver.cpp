@@ -5,15 +5,11 @@
 *
 * Date: 9/25/2020
 */
-#define _GLIBCXX_USE_CXX11_ABI 0
+#include "Date.h"
+#include "ManagementExtraFunctions.h"
+#include "Tenant.h"
 #include <iostream>
 #include <string>
-#include "Manager.cpp"
-#include "Management.cpp"
-#include "ManagementExtraFunctions.cpp"
-#include "Date.cpp"
-#include "Tenant.cpp"
-
 using namespace std;
 
 int main()
@@ -27,9 +23,12 @@ int main()
 
         //test readFile() using ManagementExtraFunctions also tests populateTenantList() in ManagementExtraFunctions
         cout << "\ntest readFile and ManagementExtraFunctions populateTenantList() class" << endl;
-        ManagementExtraFunctions managment("Managers.csv", "Tenants.csv");
-        managment.accessableTenantArr[2].printInfo();
-        cout << managment.tenantPaymentHistory[0][0] << endl;
+        ManagementExtraFunctions management("Managers.csv", "Tenants.csv");
+        management.accessableTenantArr[2].printInfo();
+        cout << management.tenantPaymentHistory[0][0] << endl;
+
+        cout << "Here";
+        system("pause");
 
         //test Date class
         cout << "\ntest Date class" << endl;
@@ -39,6 +38,9 @@ int main()
         newDate.setYear(1999);
         newDate.setMonth(2);
         cout << newDate.getDate() << endl;
+
+        cout << "Here";
+        system("pause");
 
         //test manager class
         cout << "\ntest manager class" << endl;
@@ -54,12 +56,20 @@ int main()
         testmanager.setBouns(3.0);
         testmanager.printInfo();
 
+        cout << "Here";
+        system("pause");
+
         //test collectRentalFee function
         cout << "\ntest collectRentalFee function" << endl;
-        managment.collectRentalFee();
-        cout << managment.getTotalRentCollected() << endl;
-        cout << managment.getTotalRentCollectedPerMonth(0) << endl;
+        management.collectRentalFee();
+        cout << management.getTotalRentCollected() << endl;
+        cout << management.getTotalRentCollectedPerMonth(0) << endl;
 
         int stopint = 1;
+        cout << "Here";
+        system("pause");
     }
+
+    system("pause");
+    return 0;
 }
