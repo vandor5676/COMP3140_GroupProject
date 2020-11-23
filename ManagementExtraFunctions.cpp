@@ -261,10 +261,11 @@ void ManagementExtraFunctions::missingRental()
 //as well as the past 6 months.
 void ManagementExtraFunctions::totalExpense()
 {
-    int temp, managersMonthlyExpense = 0;
+    int temp, managersMonthlyExpense;
 
     for (int i = 0; i < 6; i++)
     {
+        managersMonthlyExpense = 0;
         temp = managerMonthlyExpenses[0][i];
         managersMonthlyExpense += temp;
         cout << "The total expenses for manager 1 for month number " << (i+1) << " are: " << temp << endl;
@@ -274,6 +275,7 @@ void ManagementExtraFunctions::totalExpense()
         cout << "The total exepnses for all manager for month number " << (i+1) << " are: " << managersMonthlyExpense << endl;
         totalManagerExpenses += managersMonthlyExpense;
     }
+    cout << "Total manager expenses for 6 months are: " << totalManagerExpenses << endl;
 
 
 }
@@ -303,6 +305,11 @@ void ManagementExtraFunctions::managerSalary_bouns()
 void ManagementExtraFunctions::netIncome()
 {
     int netIncome = totalRentCollected - (totalManagerExpenses + totalManagerSalary + totalManagerBonus);
+    cout << "Totat rent collected: " << totalRentCollected << endl;
+    cout << "Total manager expenses: " << totalManagerExpenses << endl;
+    cout << "Total manager salaries: " << totalManagerSalary << endl;
+    cout << "Total manager bonuses: " << totalManagerBonus << endl;
+    cout << "Net income: " << netIncome << endl;
 }
 //Print out all tenants' profile.
 void ManagementExtraFunctions::profile_tenant()

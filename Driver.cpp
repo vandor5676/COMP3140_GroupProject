@@ -72,6 +72,7 @@ int main()
     bool LoganTest = true;
     if(LoganTest){
         ManagementExtraFunctions management2("Managers.csv", "Tenants.csv");
+        management2.collectRentalFee();
         cout << "The profiles of all managers: " << endl;
         management2.profile_manager();
         cout << endl;
