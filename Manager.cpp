@@ -61,6 +61,7 @@ void useablePrintInfo(Manager m)
 {
     const Date newDate(1, 1, 1);
     cout << "ManagerInfo" << endl;
+    cout << "Name: " << m.getName() << endl;
     cout << "Date: "+ m.getHired_Date(newDate).getDate() << endl;
     cout << "Salary: " + to_string(m.getSalary(1.0)) << endl;
     cout << "Bouns: " + to_string(m.getBouns(1)) << endl;

@@ -69,6 +69,25 @@ int main()
         cout << management.getTotalUnPaidRentCollectedPerMonth(1) << endl;
     }
 
-    // system("pause");
+    bool LoganTest = true;
+    if(LoganTest){
+        ManagementExtraFunctions management2("Managers.csv", "Tenants.csv");
+        cout << "The profiles of all managers: " << endl;
+        management2.profile_manager();
+        cout << endl;
+        cout << "The profiles of all tenants: " << endl;
+        management2.profile_tenant();
+        cout << endl;
+        cout << "The salaries and bonuses of all managers: " << endl;
+        management2.managerSalary_bouns();
+        cout << endl;
+        cout << "The total expenses of all managers: " << endl;
+        management2.totalExpense();
+        cout << endl;
+        cout << "The net income: " << endl;
+        management2.netIncome();
+    }
+
+    system("pause");
     return 0;
 }

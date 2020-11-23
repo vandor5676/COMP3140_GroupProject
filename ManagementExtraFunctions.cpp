@@ -263,15 +263,15 @@ void ManagementExtraFunctions::totalExpense()
 {
     int temp, managersMonthlyExpense = 0;
 
-    for (int i = 0; i < 12; i++)
+    for (int i = 0; i < 6; i++)
     {
+        temp = managerMonthlyExpenses[0][i];
+        managersMonthlyExpense += temp;
+        cout << "The total expenses for manager 1 for month number " << (i+1) << " are: " << temp << endl;
         temp = managerMonthlyExpenses[1][i];
         managersMonthlyExpense += temp;
-        cout << "The total expenses for manager 1 for month number " << i << " are: " << temp << endl;
-        temp = managerMonthlyExpenses[2][i];
-        managersMonthlyExpense += temp;
-        cout << "The total expenses for manager 2 for month number " << i << " are: " << temp << endl;
-        cout << "The total exepnses for all manager for month number " << i << " are: " << managersMonthlyExpense << endl;
+        cout << "The total expenses for manager 2 for month number " << (i+1) << " are: " << temp << endl;
+        cout << "The total exepnses for all manager for month number " << (i+1) << " are: " << managersMonthlyExpense << endl;
         totalManagerExpenses += managersMonthlyExpense;
     }
 
@@ -314,7 +314,7 @@ void ManagementExtraFunctions::profile_tenant()
 //Print out all Manager' profile.
 void ManagementExtraFunctions::profile_manager()
 {
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 2; i++){
         accessableManagerArr[i].printInfo();
     }
 }
