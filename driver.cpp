@@ -8,15 +8,13 @@
 
 #include <iostream>
 #include <string>
-// #include "ManagementExtraFunctions.h"
-// #include "Date.h"
-// #include "Tenant.h"
 
-// #include "Manager.h"
-#include "RentalPropertyManager.h" 
+//these imports might cause problems for you. add or delete them if you need to.
+#include "RentalPropertyManager.cpp"
+#include "Person.cpp"
+#include "Manager.cpp"
+#include "Tenant.cpp"
 
-// #include "Tenant.h"
-// #include "Person.h"
 using namespace std;
 
 int main()
@@ -31,5 +29,7 @@ int main()
         rpm.RentalPropertyManager::loadTenants("Tenants.csv");
 
         int stopInt=0;
+        cout << "End" << endl;
+
     }
 }
