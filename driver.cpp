@@ -11,6 +11,7 @@
 
 //these imports might cause problems for you. add or delete them if you need to.
 #include "RentalPropertyManager.cpp"
+#include "ExtendedPropertyManager.cpp"
 #include "Person.cpp"
 #include "Manager.cpp"
 #include "Tenant.cpp"
@@ -26,10 +27,16 @@ int main()
 
         RentalPropertyManager rpm;
         rpm.loadManagers("Managers.csv");
-        rpm.RentalPropertyManager::loadTenants("Tenants.csv");
+        rpm.loadTenants("Tenants.csv");
 
-        int stopInt=0;
-        cout << "End" << endl;
+        ExtendedPropertyManager erpm; 
+        erpm.loadManagers("Managers.csv");
+        erpm.loadTenants("Tenants.csv");
+        cout << erpm.publicManagerList.at(1).getName() <<endl;
+        cout << erpm.publicTenantList.at(10).getName()<<endl;
+      
+      int stopInt = 0;
+      cout << "End" << endl;
 
     }
 }
