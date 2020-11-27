@@ -4,8 +4,9 @@
  *File Type: Imlementation File 
  *Date: 11/16/2020
  */
-
+#ifndef MANAGEMNET_DEF
 #include "Management.h"
+#endif
 #ifndef MANAGER_H
 #include "Manager.cpp"
 #endif

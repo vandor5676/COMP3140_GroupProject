@@ -3,7 +3,7 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe build active file",
-            "command": "C:\\AMD\\bin\\g++.exe",
+            "command": "C:\\ProgramingPrograms\\mingw-w64-i386\\mingw32\\bin\\g++.exe",
             "args": [
                 "-g",
                 "${file}",
@@ -11,7 +11,7 @@
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "C:\\AMD\\bin"
+                "cwd": "C:\\ProgramingPrograms\\mingw-w64-i386\\mingw32\\bin"
             },
             "problemMatcher": [
                 "$gcc"

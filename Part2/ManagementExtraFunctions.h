@@ -6,6 +6,7 @@
  */
 #ifndef MANAGEMENTEXTRAFUNCTIONS_H
 #define MANAGEMENTEXTRAFUNCTIONS_H
+#endif
 #ifndef MANAGEMNET_DEF
 #include "Management.h"
 #endif
@@ -101,4 +102,3 @@ public:
     void setTotalManagersExpenses(double expenses);
 };
 
-#endif
