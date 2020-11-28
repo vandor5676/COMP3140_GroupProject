@@ -3,6 +3,9 @@
         "xstring": "cpp",
         "iostream": "cpp",
         "ios": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "system_error": "cpp",
+        "xlocale": "cpp",
+        "string": "cpp"
     }
 }
