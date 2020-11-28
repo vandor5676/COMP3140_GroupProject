@@ -34,16 +34,16 @@ void changeGender(int i);
 ExtendedPropertyManager erpm;
 void printMainOptions()
 {
-    cout << "\n1 Import (load) all input files (Tenants.csv, Tenants2.csv, Managers.csv, and Managers2.csv) \n";
-    cout << "2 Search for a tenant\'s profile by name, display the profile, and be able to modify his/her fields.\n";
-    cout << "3 Display all managers\' profiles and be able to modify their fields.\n";
-    cout << "4 Display the collected rental fees in total for each month and for a year.\n";
-    cout << "5 Display total expense for each month and for a year.\n";
-    cout << "6 Display the amount of missing rental fees in total for each month and for a year.\n";
-    cout << "7 Display the list of the names and house numbers of the tenants who did not pay their rental fees\n";
-    cout << "8 Display both managers\' salaries and bonuses in total for each month and for a year.\n";
-    cout << "9 Display the net income for each month and for a year.\n";
-    cout << "10 Display the summary of the financial statement for a year\n";
+    //cout << "\n1 Import (load) all input files (Tenants.csv, Tenants2.csv, Managers.csv, and Managers2.csv) \n";
+    cout << "\n1 Search for a tenant\'s profile by name, display the profile, and be able to modify his/her fields.\n";
+    cout << "2 Display all managers\' profiles and be able to modify their fields.\n";
+    cout << "3 Display the collected rental fees in total for each month and for a year.\n";
+    cout << "4 Display total expense for each month and for a year.\n";
+    cout << "5 Display the amount of missing rental fees in total for each month and for a year.\n";
+    cout << "6 Display the list of the names and house numbers of the tenants who did not pay their rental fees\n";
+    cout << "7 Display both managers\' salaries and bonuses in total for each month and for a year.\n";
+    cout << "8 Display the net income for each month and for a year.\n";
+    cout << "9 Display the summary of the financial statement for a year\n";
 }
 
 int main()
@@ -65,10 +65,11 @@ int main()
             //choice = 2;
             if (choice == "1")
             {
+                searchTenantProfile();
             }
             else if (choice == "2")
             {
-                searchTenantProfile();
+                
             }
             else if (choice == "3")
             {
