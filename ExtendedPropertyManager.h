@@ -27,5 +27,10 @@ public:
     // Load tenant and manager data from CSV file
     void loadManagers(string managerDataFile);
     void loadTenants(string tenantDataFile);
+
+    //load second tenant and manager files
+    void loadExtraTenantData(string fileName);
+    void loadExtraManagerData(string fileName);
+
 };
 #endif
