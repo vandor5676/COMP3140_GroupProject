@@ -9,6 +9,8 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <iostream>
+#include <fstream>
 
 //these imports might cause problems for you. add or delete them if you need to.
 #include "RentalPropertyManager.cpp"
@@ -31,9 +33,10 @@ void changeAge(int i);
 void changeGender(int i);
 void printMainOptions();
 
+void savechanges(ExtendedPropertyManager eprm);
+
 //globals
 ExtendedPropertyManager erpm;
-
 
 void printMainOptions()
 {
@@ -52,10 +55,22 @@ void printMainOptions()
 int main()
 {
     //load information
-    erpm.loadManagers("Managers.csv");
-    erpm.loadTenants("Tenants.csv");
-    erpm.loadExtraManagerData("Managers2.csv");
-    erpm.loadExtraTenantData("Tenants2.csv");
+    bool Testing = true;
+    if (!Testing)
+    {
+        erpm.loadManagers("Managers.csv");
+        erpm.loadTenants("Tenants.csv");
+        erpm.loadExtraManagerData("Managers2.csv");
+        erpm.loadExtraTenantData("Tenants2.csv");
+    }
+    else
+    {
+        //for testing
+        erpm.loadManagers("testManager.csv");
+        erpm.loadTenants("testTenant.csv");
+        erpm.loadExtraManagerData("test2Manager.csv");
+        erpm.loadExtraTenantData("test2Tenant.csv");
+    }
 
     bool main = true;
     if (main)
@@ -74,7 +89,6 @@ int main()
             }
             else if (choice == "2")
             {
-                
             }
             else if (choice == "3")
             {
@@ -96,6 +110,7 @@ int main()
             }
             else if (choice == "-1")
             {
+                savechanges(erpm);
                 return 1;
             }
             else
@@ -123,6 +138,60 @@ int main()
     }
 }
 
+void savechanges(ExtendedPropertyManager eprm)
+{
+    //change these to the real files before we submit
+    ofstream Manager1("testManager.csv");
+    ofstream Manager2("test2Manager.csv");
+    ofstream Tenant1("testTenant.csv");
+    ofstream Tenant2("test2Tenant.csv");
+
+    //
+    // print managers
+    //
+    Manager1 << "Name,Age,Gender,Hired Date,Salary,Bonus,Expense for January "
+                "2020,Expense for February 2020,Expense for March 2020,Expense "
+                "for April 2020,Expense for May 2020,Expense for June 2020\n";
+    Manager2
+        << "Name,Age,Gender,Hired Date,Salary,Bonus,Expense for July "
+           "2020,Expense for August 2020,Expense for September 2020,Expense for "
+           "October 2020,Expense for November 2020,Expense for December 2020\n";
+    for (int i = 0; i < erpm.publicManagerList.size(); i++)
+    {
+        Manager1 << erpm.getManagerCSV(erpm.publicManagerList.at(i), 1) << "\n";
+    }
+    //file 2
+    for (int i = 0; i < erpm.publicManagerList.size(); i++)
+    {
+        Manager2 << erpm.getManagerCSV(erpm.publicManagerList.at(i), 2) << "\n";
+    }
+    //
+    //end print managers
+    //
+
+    //
+    // print Tenants
+    //
+    Tenant1 << "Name,Age,Gender,Job,House Unit Number,Moving-in Date,Monthly Rental Fee,\"January, 2020\",\"February, 2020\",\"March, 2020\",\"April, 2020\",\"May, 2020\",\"June, 2020\"\n";
+    Tenant2 << "Name,Age,Gender,Job,House Unit Number,Moving-in Date,Monthly Rental Fee,\"July, 2020\",\"August, 2020\",\"September, 2020\",\"October, 2020\",\"November, 2020\",\"December, 2020\"\n";
+    for (int i = 0; i < erpm.publicTenantList.size(); i++)
+    {
+        Tenant1 << erpm.getTenantCSV(erpm.publicTenantList.at(i), 1) << "\n";
+    }
+    //file 2
+    for (int i = 0; i < erpm.publicTenantList.size(); i++)
+    {
+        Tenant2 << erpm.getTenantCSV(erpm.publicTenantList.at(i), 2) << "\n";
+    }
+    //
+    //end print Tenants
+    //
+
+    Manager1.close();
+    Manager2.close();
+    Tenant1.close();
+    Tenant2.close();
+}
 
 //Searches for a tenant’s profile by name, display the profile, and is able to modify his/her fields.
 void searchTenantProfile()
@@ -140,7 +209,8 @@ void searchTenantProfile()
             if (name == erpm.publicTenantList.at(i).getName())
             {
                 matchBool = true;
-                cout <<endl << erpm.publicTenantList.at(i).getProfile() << endl;
+                cout << endl
+                     << erpm.publicTenantList.at(i).getProfile() << endl;
 
                 cout << "1 Job" << endl;
                 cout << "2 UnitNumber" << endl;
@@ -206,7 +276,7 @@ void searchTenantProfile()
         {
             cout << "No matching name" << endl;
         }
-    } while (matchBool == false || name !="-1");
+    } while (matchBool == false || name != "-1");
 }
 
 //
@@ -355,5 +425,3 @@ void changeGender(int i)
 //
 //end -> used to change a tennants profile
 //
-
-

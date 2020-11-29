@@ -32,5 +32,10 @@ public:
     void loadExtraTenantData(string fileName);
     void loadExtraManagerData(string fileName);
 
+    //print out tenant/manager info as csv string
+    string getManagerCSV(Manager m, int i);
+    string getTenantCSV(Tenant m, int i); 
+    
+
 };
 #endif
