@@ -29,9 +29,12 @@ void changePaymentStatus(int i);
 void changeName(int i);
 void changeAge(int i);
 void changeGender(int i);
+void printMainOptions();
 
 //globals
 ExtendedPropertyManager erpm;
+
+
 void printMainOptions()
 {
     //cout << "\n1 Import (load) all input files (Tenants.csv, Tenants2.csv, Managers.csv, and Managers2.csv) \n";
@@ -51,6 +54,8 @@ int main()
     //load information
     erpm.loadManagers("Managers.csv");
     erpm.loadTenants("Tenants.csv");
+    erpm.loadExtraManagerData("Managers2.csv");
+    erpm.loadExtraTenantData("Tenants2.csv");
 
     bool main = true;
     if (main)
@@ -117,6 +122,8 @@ int main()
         cout << "End" << endl;
     }
 }
+
+
 //Searches for a tenant’s profile by name, display the profile, and is able to modify his/her fields.
 void searchTenantProfile()
 {
@@ -348,3 +355,5 @@ void changeGender(int i)
 //
 //end -> used to change a tennants profile
 //
+
+
