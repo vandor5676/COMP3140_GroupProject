@@ -13,11 +13,12 @@
 #include <fstream>
 
 //these imports might cause problems for you. add or delete them if you need to.
-#include "RentalPropertyManager.cpp"
-#include "ExtendedPropertyManager.cpp"
-#include "Person.cpp"
-#include "Manager.cpp"
-#include "Tenant.cpp"
+
+#include "RentalPropertyManager.h"
+#include "ExtendedPropertyManager.h"
+#include "Person.h"
+#include "Manager.h"
+#include "Tenant.h"
 
 using namespace std;
 

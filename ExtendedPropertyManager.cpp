@@ -33,8 +33,8 @@ vector<string> readLines(ifstream &file);
 string PaymentStatusToString(bool status);
 
 //constants
-//TENANT_FILE_LINE_LENGTH;
-//const size_t MANAGER_FILE_LINE_LENGTH = 12;
+const size_t TENANT_FILE_LINE_LENGTH_P = 13;
+const size_t MANAGER_FILE_LINE_LENGTH_P = 12;
 
 //constructor
 ExtendedPropertyManager::ExtendedPropertyManager()
@@ -69,7 +69,7 @@ Manager addManagerFromLine(string line, Manager m)
 
     auto tokens = tokenize(line, ",");
 
-    if (tokens.size() != MANAGER_FILE_LINE_LENGTH)
+    if (tokens.size() != MANAGER_FILE_LINE_LENGTH_P)
     {
         throw invalid_argument("Caught malformed line in manager data file."
                                "Caused by: " +
@@ -111,7 +111,7 @@ Tenant addTenantFromLine(string line, Tenant t)
 
     auto tokens = tokenize(line, ",");
 
-    if (tokens.size() != TENANT_FILE_LINE_LENGTH)
+    if (tokens.size() != TENANT_FILE_LINE_LENGTH_P)
     {
         throw invalid_argument("Caught malformed line in tenant data file.\n"
                                "Caused by: " +
