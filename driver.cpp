@@ -28,12 +28,17 @@ void changeUnitnNumber(int i);
 void changeRentalFee(int i);
 void changeMoveinDate(int i);
 void changePaymentStatus(int i);
-void changeName(int i);
-void changeAge(int i);
-void changeGender(int i);
+void changeName(int i, string T);
+void changeAge(int i,string T);
+void changeGender(int i,string T);
 void printMainOptions();
 
 void savechanges(ExtendedPropertyManager eprm);
+void serchManagerProfile();
+void changeHireDate(int i);
+void changeSalary(int i);
+void changeBonus(int i);
+void changeExpenses(int i);
 
 //globals
 ExtendedPropertyManager erpm;
@@ -50,6 +55,7 @@ void printMainOptions()
     cout << "7 Display both managers\' salaries and bonuses in total for each month and for a year.\n";
     cout << "8 Display the net income for each month and for a year.\n";
     cout << "9 Display the summary of the financial statement for a year\n";
+    cout << "-1 To Quit\n";
 }
 
 int main()
@@ -89,6 +95,7 @@ int main()
             }
             else if (choice == "2")
             {
+                serchManagerProfile();
             }
             else if (choice == "3")
             {
@@ -194,6 +201,93 @@ void savechanges(ExtendedPropertyManager eprm)
 }
 
 //Searches for a tenant’s profile by name, display the profile, and is able to modify his/her fields.
+void serchManagerProfile()
+{
+    for (int i = 0; i < erpm.publicManagerList.size() ; i++)
+    {
+        cout<< erpm.publicManagerList.at(i).getProfile()<<endl;
+    }
+    
+
+    bool matchBool = false;
+    string name;
+    do
+    {
+        cout << "\nEnter a name, -1 to quit" << endl;
+        getline(cin, name);
+        //name = "Jennifer Dory";
+
+        for (int i = 0; i < erpm.publicManagerList.size(); i++)
+        {
+            if (name == erpm.publicManagerList.at(i).getName())
+            {
+                matchBool = true;
+                cout << endl
+                     << erpm.publicManagerList.at(i).getProfile() << endl;
+
+                cout << "1 Hire Date" << endl;
+                cout << "2 Salary" << endl;
+                cout << "3 Bonus" << endl;
+                cout << "4 Expenses" << endl;
+                cout << "5 Name " << endl;
+                cout << "6 Age" << endl;
+                cout << "7 Gender" << endl;
+
+                string choice = "0";
+                while (choice != "-1")
+                {
+                    cout << "What do you want to change? (-1 to exit)" << endl;
+                    // cin.clear();
+                    // cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    getline(cin, choice);
+
+                    if (choice == "1")
+                    {
+                        changeHireDate(i);
+                    }
+                    else if (choice == "2")
+                    {
+                        changeSalary(i);
+                    }
+                    else if (choice == "3")
+                    {
+                        changeBonus(i);
+                    }
+                    else if (choice == "4")
+                    {
+                        changeExpenses(i);
+                    }
+                    else if (choice == "5")
+                    {
+                        changeName(i, "m");
+                    }
+                    else if (choice == "6")
+                    {
+                        changeAge(i, "m");
+                    }
+                    else if (choice == "7")
+                    {
+                        changeGender(i, "m");
+                    }
+                    else if (choice == "-1")
+                    {
+                        printMainOptions();
+                        return;
+                    }
+                    else
+                    {
+                    }
+                }
+            }
+        }
+        if (matchBool == false)
+        {
+            cout << "No matching name" << endl;
+        }
+    } while (matchBool == false || name != "-1");
+}
+
+//Searches for a tenant’s profile by name, display the profile, and is able to modify his/her fields.
 void searchTenantProfile()
 {
     bool matchBool = false;
@@ -251,15 +345,15 @@ void searchTenantProfile()
                     }
                     else if (choice == "6")
                     {
-                        changeName(i);
+                        changeName(i, "t");
                     }
                     else if (choice == "7")
                     {
-                        changeAge(i);
+                        changeAge(i, "t");
                     }
                     else if (choice == "8")
                     {
-                        changeGender(i);
+                        changeGender(i, "t");
                     }
                     else if (choice == "-1")
                     {
@@ -280,7 +374,7 @@ void searchTenantProfile()
 }
 
 //
-//used to change a tennants profile
+//used to change a tennants/manager profile
 //
 void changeJobTitle(int i)
 {
@@ -374,24 +468,27 @@ void changePaymentStatus(int i)
     }
     catch (const std::exception &e)
     {
-        cout << "not a valid date" << endl;
+        cout << "Problem with payment status" << endl;
     }
     // vector<bool> psTest = erpm.publicTenantList.at(i).getPaymentsStatus();
     // cout << erpm.publicTenantList.at(i).getProfile() << endl;
     // cout << erpm.publicTenantList.at(i).getJob() << endl;
 }
-void changeName(int i)
+void changeName(int i, string T)
 {
     cout << "Enter new Name" << endl;
     string name;
     getline(cin, name);
+    if(T == "t")
     erpm.publicTenantList.at(i).setName(name);
+    if(T == "m")
+    erpm.publicManagerList.at(i).setName(name);
     cout << "Name set!" << endl;
 
     //  cout<< erpm.publicTenantList.at(i).getProfile()<<endl;
     //  cout<<erpm.publicTenantList.at(i).getJob()<<endl;
 }
-void changeAge(int i)
+void changeAge(int i,string T)
 {
     cout << "Enter a new age" << endl;
     string number;
@@ -399,7 +496,10 @@ void changeAge(int i)
     try
     {
         int unitNum = stoi(number);
+        if(T == "t")
         erpm.publicTenantList.at(i).setAge(unitNum);
+        if(T == "m")
+        erpm.publicManagerList.at(i).setAge(unitNum);
         cout << "new age set!" << endl;
     }
     catch (const std::exception &e)
@@ -410,16 +510,92 @@ void changeAge(int i)
     //   cout<< erpm.publicTenantList.at(i).getProfile()<<endl;
     //   cout<<erpm.publicTenantList.at(i).getJob()<<endl;
 }
-void changeGender(int i)
+void changeGender(int i,string T)
 {
     cout << "Enter new Gender" << endl;
     string gender;
     getline(cin, gender);
+     if(T == "t")
     erpm.publicTenantList.at(i).setGender(gender);
+     if(T == "m")
+    erpm.publicManagerList.at(i).setGender(gender);
     cout << "Gender set!" << endl;
 
     //  cout<< erpm.publicTenantList.at(i).getProfile()<<endl;
     //  cout<<erpm.publicTenantList.at(i).getJob()<<endl;
+}
+
+//manager options
+void changeHireDate(int i)
+{
+    cout << "Enter new Hire Date" << endl;
+    string date;
+    getline(cin, date);
+    erpm.publicManagerList.at(i).setHireDate(date);
+    cout << "Hire Date set!" << endl;
+}
+void changeSalary(int i)
+{
+    cout << "Enter a new Salary" << endl;
+    string decimal;
+    getline(cin, decimal);
+    try
+    {
+        double salary = stod(decimal);
+        erpm.publicManagerList.at(i).setSalary(salary);
+        cout << "Salary set!" << endl;
+    }
+    catch (const std::exception &e)
+    {
+        cout << "not a valid Salary" << endl;
+    }
+}
+void changeBonus(int i)
+{
+    cout << "Enter a new Bonus" << endl;
+    string decimal;
+    getline(cin, decimal);
+    try
+    {
+        double bonus = stod(decimal);
+        erpm.publicManagerList.at(i).setBonus(bonus);
+        cout << "Bonus set!" << endl;
+    }
+    catch (const std::exception &e)
+    {
+        cout << "not a valid Bonus" << endl;
+    }
+}
+void changeExpenses(int i)
+{
+    cout << "Enter new Expenses. enter -1 to quit" << endl;
+    string input;
+    vector<double> expences;
+    while (input != "-1")
+    {
+        getline(cin, input);
+        try
+        {
+            expences.push_back(stod(input));
+        }
+        catch (const std::exception &e)
+        {
+            cout << "Not a valid Expense" << endl;
+        }
+    }
+
+    try
+    {
+        erpm.publicManagerList.at(i).setMonthlyExpenses(expences);
+        cout << "Expences set!" << endl;
+    }
+    catch (const std::exception &e)
+    {
+        cout << "Error seting payment status vector" << endl;
+    }
+    // vector<bool> psTest = erpm.publicTenantList.at(i).getPaymentsStatus();
+    // cout << erpm.publicTenantList.at(i).getProfile() << endl;
+    // cout << erpm.publicTenantList.at(i).getJob() << endl;
 }
 
 //
