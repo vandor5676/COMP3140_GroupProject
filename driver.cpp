@@ -13,7 +13,6 @@
 #include <fstream>
 
 //these imports might cause problems for you. add or delete them if you need to.
-
 #include "RentalPropertyManager.h"
 #include "ExtendedPropertyManager.h"
 #include "Person.h"
@@ -35,7 +34,7 @@ void changeGender(int i,string T);
 void printMainOptions();
 
 void savechanges(ExtendedPropertyManager eprm);
-void serchManagerProfile();
+void searchManagerProfile();
 void changeHireDate(int i);
 void changeSalary(int i);
 void changeBonus(int i);
@@ -96,7 +95,7 @@ int main()
             }
             else if (choice == "2")
             {
-                serchManagerProfile();
+                searchManagerProfile();
             }
             else if (choice == "3")
             {
@@ -112,7 +111,6 @@ int main()
             }
             else if (choice == "7")
             {
-                cout << erpm.generateManagerRemunerationMonthlySummary() << endl;
             }
             else if (choice == "8")
             {
@@ -203,7 +201,7 @@ void savechanges(ExtendedPropertyManager eprm)
 }
 
 //Searches for a tenant’s profile by name, display the profile, and is able to modify his/her fields.
-void serchManagerProfile()
+void searchManagerProfile()
 {
     for (int i = 0; i < erpm.publicManagerList.size() ; i++)
     {
@@ -279,6 +277,9 @@ void serchManagerProfile()
                     else
                     {
                     }
+
+                    //Syncs managerList and publicManagerList
+                    erpm.setManagerList(erpm.publicManagerList);
                 }
             }
         }
@@ -365,6 +366,9 @@ void searchTenantProfile()
                     else
                     {
                     }
+
+                    //Syncs tenantList and publicTenantList
+                    erpm.setTenantList(erpm.publicTenantList);
                 }
             }
         }

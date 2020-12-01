@@ -33,30 +33,49 @@ vector<string> readLines(ifstream &file);
 string PaymentStatusToString(bool status);
 
 //constants
-const size_t TENANT_FILE_LINE_LENGTH_P = 13;
-const size_t MANAGER_FILE_LINE_LENGTH_P = 12;
+const size_t ETENANT_FILE_LINE_LENGTH = 13;
+const size_t EMANAGER_FILE_LINE_LENGTH = 12;
 
 //constructor
 ExtendedPropertyManager::ExtendedPropertyManager()
 {
 }
 
+//Getters and Setters for inherited data
+vector<Tenant> ExtendedPropertyManager :: getTenantList(){
+    return tenantList;
+};
+vector<Manager> ExtendedPropertyManager :: getManagerList(){
+    return managerList;
+};
+
+void ExtendedPropertyManager::setManagerList(vector<Manager> newManagerList){
+    this->managerList = newManagerList;
+};
+void ExtendedPropertyManager::setTenantList(vector<Tenant> newTenantList){
+    this->tenantList = newTenantList;
+};
+
 void ExtendedPropertyManager::loadTenants(string filepath)
 {
     loadData(filepath, publicTenantList, tenantFromLine);
+    loadData(filepath, tenantList, tenantFromLine);
 }
 void ExtendedPropertyManager::loadManagers(string filepath)
 {
     loadData(filepath, publicManagerList, managerFromLine);
+    loadData(filepath, managerList, managerFromLine);
 }
 
 void ExtendedPropertyManager::loadExtraTenantData(string fileName)
 {
     loadData(fileName, publicTenantList, addTenantFromLine);
+    loadData(fileName, tenantList, addTenantFromLine);
 }
 void ExtendedPropertyManager::loadExtraManagerData(string fileName)
 {
     loadData(fileName, publicManagerList, addManagerFromLine);
+    loadData(fileName, managerList, addManagerFromLine);
 }
 
 //
@@ -69,7 +88,7 @@ Manager addManagerFromLine(string line, Manager m)
 
     auto tokens = tokenize(line, ",");
 
-    if (tokens.size() != MANAGER_FILE_LINE_LENGTH_P)
+    if (tokens.size() != EMANAGER_FILE_LINE_LENGTH)
     {
         throw invalid_argument("Caught malformed line in manager data file."
                                "Caused by: " +
@@ -111,7 +130,7 @@ Tenant addTenantFromLine(string line, Tenant t)
 
     auto tokens = tokenize(line, ",");
 
-    if (tokens.size() != TENANT_FILE_LINE_LENGTH_P)
+    if (tokens.size() != ETENANT_FILE_LINE_LENGTH)
     {
         throw invalid_argument("Caught malformed line in tenant data file.\n"
                                "Caused by: " +
