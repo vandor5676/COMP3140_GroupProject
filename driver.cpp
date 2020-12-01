@@ -284,7 +284,7 @@ void serchManagerProfile()
         {
             cout << "No matching name" << endl;
         }
-    } while (matchBool == false || name != "-1");
+    } while (matchBool == false && name != "-1");
 }
 
 //Searches for a tenant’s profile by name, display the profile, and is able to modify his/her fields.
@@ -370,7 +370,7 @@ void searchTenantProfile()
         {
             cout << "No matching name" << endl;
         }
-    } while (matchBool == false || name != "-1");
+    } while (matchBool == false && name != "-1");
 }
 
 //
