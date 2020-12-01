@@ -292,17 +292,39 @@ string ExtendedPropertyManager :: createNetIncomeMonthlySummary(){
     return outputString.str();
 };
 
+string ExtendedPropertyManager :: getManagerSalariesBonuses() {
+    stringstream outputString;
+    outputString.precision(2);
+    outputString.setf(ios::fixed);
+    double mExp, mBon, mTot;
+
+    outputString << "MONTHLY MANAGER SALARIES AND BONUSES" << endl;
+    for(auto m : managerList){
+        outputString << "Manager " << m.getName() << endl;
+        outputString << "Salary: $" << m.getSalary() << endl;
+        outputString << "Bonus: $" << m.getBonus() << endl;
+        outputString << "Total: $" << m.getBonus() + m.getSalary() << endl << endl;
+    }
+    outputString << "Total For All Managers: $" << calcManagerRemunerationForMonth(1) << endl;
+    return outputString.str();
+}
+
 string ExtendedPropertyManager :: createExpenseMonthlySummary(){
     stringstream outputString;
     outputString.precision(2);
     outputString.setf(ios::fixed);
-    double mTExp, yTExp = 0;
+    double mExp, mRem, mTMonth, yTExp = 0;
 
-    outputString << "MONTHLY NET EXPENSE SUMMARY" << endl;
+    outputString << "MONTHLY EXPENSE SUMMARY" << endl;
     for(int i = 0; i < 6; i++){
-        mTExp = calcManagerRemunerationForMonth(i) + calcManagerExpenseForMonth(i);
-        yTExp += mTExp;
-        outputString << "Net expense for month " << i << ": $" << mTExp << endl;
+        mRem = calcManagerRemunerationForMonth(i);
+        mExp = calcManagerExpenseForMonth(i);
+        mTMonth = mRem + mExp;
+        yTExp += mTMonth;
+        outputString << "For Month: " << i << endl;
+        outputString << "Manager Expenses: $" << mExp << endl;
+        outputString << "Manager Payments: $" << mRem << endl;
+        outputString << "Total Expenses " << ": $" << mTMonth << endl << endl;
     }
     outputString << "For year total: $" << yTExp << endl;
     return outputString.str();

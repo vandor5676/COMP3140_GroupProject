@@ -47,6 +47,9 @@ public:
 
     //generate the total expense summary for each month and a year
     string createExpenseMonthlySummary();
+
+    //generate a string showing the salaries and bonuses of each manager
+    string getManagerSalariesBonuses();
     
 
 };

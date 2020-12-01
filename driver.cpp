@@ -112,7 +112,7 @@ int main()
             }
             else if (choice == "7")
             {
-                cout << erpm.generateManagerRemunerationMonthlySummary() << endl;
+                cout << erpm.getManagerSalariesBonuses() << endl;
             }
             else if (choice == "8")
             {
