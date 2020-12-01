@@ -111,8 +111,13 @@ int main()
             }
             else if (choice == "7")
             {
+                cout << erpm.generateManagerRemunerationMonthlySummary() << endl;
             }
             else if (choice == "8")
+            {
+                cout << erpm.createNetIncomeMonthlySummary() << endl;
+            }
+            else if (choice == "9")
             {
             }
             else if (choice == "-1")

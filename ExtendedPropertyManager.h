@@ -41,6 +41,9 @@ public:
     //print out tenant/manager info as csv string
     string getManagerCSV(Manager m, int i);
     string getTenantCSV(Tenant m, int i); 
+
+    //generate a monthly summary of the net income
+    string createNetIncomeMonthlySummary();
     
 
 };

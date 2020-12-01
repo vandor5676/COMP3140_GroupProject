@@ -269,3 +269,29 @@ string PaymentStatusToString(bool status) {
 //
 //end -->used for writing to the output file
 //
+
+//
+//Start -> Extended functions where base output was not usable
+//
+
+string ExtendedPropertyManager :: createNetIncomeMonthlySummary(){
+    stringstream outputString;
+    outputString.precision(2);
+    outputString.setf(ios::fixed);
+    double mInc, mExp, mTot, yTot = 0;
+
+    outputString << "MONTHLY NET INCOME SUMMARY" << endl;
+    for(int i = 0; i < 6; i++){
+        mExp = calcManagerRemunerationForMonth(i) + calcManagerExpenseForMonth(i);
+        mInc = calcCollectedRentForMonth(i);
+        mTot = mInc - mExp;
+        yTot += mTot;
+        outputString << "For Month " << i << ": " << mTot << endl;
+    }
+    outputString << "For year total: " << yTot << endl;
+    return outputString.str();
+};
+
+//
+//End -> Extended functions where base output was not usable
+//
