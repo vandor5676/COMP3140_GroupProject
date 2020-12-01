@@ -44,6 +44,9 @@ public:
 
     //generate a monthly summary of the net income
     string createNetIncomeMonthlySummary();
+
+    //generate the total expense summary for each month and a year
+    string createExpenseMonthlySummary();
     
 
 };

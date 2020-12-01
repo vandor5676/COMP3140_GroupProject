@@ -286,9 +286,25 @@ string ExtendedPropertyManager :: createNetIncomeMonthlySummary(){
         mInc = calcCollectedRentForMonth(i);
         mTot = mInc - mExp;
         yTot += mTot;
-        outputString << "For Month " << i << ": " << mTot << endl;
+        outputString << "Net income for month " << i << ": $" << mTot << endl;
     }
-    outputString << "For year total: " << yTot << endl;
+    outputString << "For year total: $" << yTot << endl;
+    return outputString.str();
+};
+
+string ExtendedPropertyManager :: createExpenseMonthlySummary(){
+    stringstream outputString;
+    outputString.precision(2);
+    outputString.setf(ios::fixed);
+    double mTExp, yTExp = 0;
+
+    outputString << "MONTHLY NET EXPENSE SUMMARY" << endl;
+    for(int i = 0; i < 6; i++){
+        mTExp = calcManagerRemunerationForMonth(i) + calcManagerExpenseForMonth(i);
+        yTExp += mTExp;
+        outputString << "Net expense for month " << i << ": $" << mTExp << endl;
+    }
+    outputString << "For year total: $" << yTExp << endl;
     return outputString.str();
 };
 

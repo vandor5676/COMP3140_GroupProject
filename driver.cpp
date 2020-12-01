@@ -102,6 +102,7 @@ int main()
             }
             else if (choice == "4")
             {
+                cout << erpm.createExpenseMonthlySummary() << endl;
             }
             else if (choice == "5")
             {
