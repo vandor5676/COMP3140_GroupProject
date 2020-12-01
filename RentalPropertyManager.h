@@ -24,7 +24,7 @@ using namespace std;
 //          - The instance should be used to load the tenant and manager data files
 //          - The instance should then be used to provide the required functionality within the Rental Management System
 class RentalPropertyManager {
-    private:
+    protected:
         vector<Tenant> tenantList;
         vector<Manager> managerList;
 
