@@ -23,6 +23,12 @@ public:
     //constructors
     ExtendedPropertyManager();
 
+    //Getters and Setters to be able to access managerList and tenantList from the driver program
+    vector<Tenant> getTenantList();
+    vector<Manager> getManagerList();
+
+    void setManagerList(vector<Manager> newManagerList);
+    void setTenantList(vector<Tenant> newTenantList);
 
     // Load tenant and manager data from CSV file
     void loadManagers(string managerDataFile);
