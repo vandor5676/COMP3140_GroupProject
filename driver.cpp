@@ -282,7 +282,7 @@ void serchManagerProfile()
                 }
             }
         }
-        if (matchBool == false)
+        if (matchBool == false && name != "-1")
         {
             cout << "No matching name" << endl;
         }
@@ -368,7 +368,7 @@ void searchTenantProfile()
                 }
             }
         }
-        if (matchBool == false)
+        if (matchBool == false && name != "-1")
         {
             cout << "No matching name" << endl;
         }
