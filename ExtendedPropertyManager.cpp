@@ -33,30 +33,44 @@ vector<string> readLines(ifstream &file);
 string PaymentStatusToString(bool status);
 
 //constants
-//TENANT_FILE_LINE_LENGTH;
-//const size_t MANAGER_FILE_LINE_LENGTH = 12;
+const size_t TENANT_FILE_LINE_LENGTH = 13;
+const size_t MANAGER_FILE_LINE_LENGTH = 12;
 
 //constructor
 ExtendedPropertyManager::ExtendedPropertyManager()
 {
 }
 
+vector<Tenant> ExtendedPropertyManager::getTenantList(){
+    return tenantList;
+};
+vector<Manager> ExtendedPropertyManager::getManagerList(){
+    return managerList;
+};
+
+void ExtendedPropertyManager::setManagerList(vector<Manager> newManagerList){
+    this->managerList = newManagerList;
+};
+void ExtendedPropertyManager::setTenantList(vector<Tenant> newTenantList){
+    this->tenantList = newTenantList;
+};
+
 void ExtendedPropertyManager::loadTenants(string filepath)
 {
-    loadData(filepath, publicTenantList, tenantFromLine);
+    loadData(filepath, tenantList, tenantFromLine);
 }
 void ExtendedPropertyManager::loadManagers(string filepath)
 {
-    loadData(filepath, publicManagerList, managerFromLine);
+    loadData(filepath, managerList, managerFromLine);
 }
 
 void ExtendedPropertyManager::loadExtraTenantData(string fileName)
 {
-    loadData(fileName, publicTenantList, addTenantFromLine);
+    loadData(fileName, tenantList, addTenantFromLine);
 }
 void ExtendedPropertyManager::loadExtraManagerData(string fileName)
 {
-    loadData(fileName, publicManagerList, addManagerFromLine);
+    loadData(fileName, managerList, addManagerFromLine);
 }
 
 //
