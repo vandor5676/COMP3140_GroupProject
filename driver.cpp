@@ -99,9 +99,13 @@ int main()
             }
             else if (choice == "3")
             {
+                cout << erpm.generateCollectedRentMonthlySummary() << endl;
+                cout << "Total rent collected: $" << erpm.calcCollectedRentTotal() << endl;
+                cout << erpm.publicTenantList.size() << endl;
             }
             else if (choice == "4")
             {
+                cout << erpm.createExpenseMonthlySummary() << endl;
             }
             else if (choice == "5")
             {
@@ -111,9 +115,13 @@ int main()
             }
             else if (choice == "7")
             {
-
+                cout << erpm.getManagerSalariesBonuses() << endl;
             }
             else if (choice == "8")
+            {
+                cout << erpm.createNetIncomeMonthlySummary() << endl;
+            }
+            else if (choice == "9")
             {
             }
             else if (choice == "-1")

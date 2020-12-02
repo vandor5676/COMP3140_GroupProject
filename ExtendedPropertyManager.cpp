@@ -269,3 +269,67 @@ string PaymentStatusToString(bool status) {
 //
 //end -->used for writing to the output file
 //
+
+//
+//Start -> Extended functions where base output was not usable
+//
+
+string ExtendedPropertyManager :: createNetIncomeMonthlySummary(){
+    stringstream outputString;
+    outputString.precision(2);
+    outputString.setf(ios::fixed);
+    double mInc, mExp, mTot, yTot = 0;
+
+    outputString << "MONTHLY NET INCOME SUMMARY" << endl;
+    for(int i = 0; i < 6; i++){
+        mExp = calcManagerRemunerationForMonth(i) + calcManagerExpenseForMonth(i);
+        mInc = calcCollectedRentForMonth(i);
+        mTot = mInc - mExp;
+        yTot += mTot;
+        outputString << "Net income for month " << i << ": $" << mTot << endl;
+    }
+    outputString << "For year total: $" << yTot << endl;
+    return outputString.str();
+};
+
+string ExtendedPropertyManager :: getManagerSalariesBonuses() {
+    stringstream outputString;
+    outputString.precision(2);
+    outputString.setf(ios::fixed);
+    double mExp, mBon, mTot;
+
+    outputString << "MONTHLY MANAGER SALARIES AND BONUSES" << endl;
+    for(auto m : managerList){
+        outputString << "Manager " << m.getName() << endl;
+        outputString << "Salary: $" << m.getSalary() << endl;
+        outputString << "Bonus: $" << m.getBonus() << endl;
+        outputString << "Total: $" << m.getBonus() + m.getSalary() << endl << endl;
+    }
+    outputString << "Total For All Managers: $" << calcManagerRemunerationForMonth(1) << endl;
+    return outputString.str();
+}
+
+string ExtendedPropertyManager :: createExpenseMonthlySummary(){
+    stringstream outputString;
+    outputString.precision(2);
+    outputString.setf(ios::fixed);
+    double mExp, mRem, mTMonth, yTExp = 0;
+
+    outputString << "MONTHLY EXPENSE SUMMARY" << endl;
+    for(int i = 0; i < 6; i++){
+        mRem = calcManagerRemunerationForMonth(i);
+        mExp = calcManagerExpenseForMonth(i);
+        mTMonth = mRem + mExp;
+        yTExp += mTMonth;
+        outputString << "For Month: " << i << endl;
+        outputString << "Manager Expenses: $" << mExp << endl;
+        outputString << "Manager Payments: $" << mRem << endl;
+        outputString << "Total Expenses " << ": $" << mTMonth << endl << endl;
+    }
+    outputString << "For year total: $" << yTExp << endl;
+    return outputString.str();
+};
+
+//
+//End -> Extended functions where base output was not usable
+//
