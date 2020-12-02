@@ -99,6 +99,9 @@ int main()
             }
             else if (choice == "3")
             {
+                cout << erpm.generateCollectedRentMonthlySummary() << endl;
+                cout << "Total rent collected: $" << erpm.calcCollectedRentTotal() << endl;
+                cout << erpm.publicTenantList.size() << endl;
             }
             else if (choice == "4")
             {
