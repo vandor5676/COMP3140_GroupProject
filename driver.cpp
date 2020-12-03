@@ -66,22 +66,12 @@ void printMainOptions()
 int main()
 {
 	//load information
-	bool Testing = true;
-	if (!Testing)
-	{
 		erpm.loadManagers("Managers.csv");
 		erpm.loadTenants("Tenants.csv");
 		erpm.loadExtraManagerData("Managers2.csv");
 		erpm.loadExtraTenantData("Tenants2.csv");
-	}
-	else
-	{
-		//for testing
-		erpm.loadManagers("testManager.csv");
-		erpm.loadTenants("testTenant.csv");
-		erpm.loadExtraManagerData("test2Manager.csv");
-		erpm.loadExtraTenantData("test2Tenant.csv");
-	}
+
+
 
 	bool main = true;
 	if (main)
@@ -165,10 +155,11 @@ int main()
 void savechanges(ExtendedPropertyManager eprm)
 {
 	//change these to the real files before we submit
-	ofstream Manager1("testManager.csv");
-	ofstream Manager2("test2Manager.csv");
-	ofstream Tenant1("testTenant.csv");
-	ofstream Tenant2("test2Tenant.csv");
+	ofstream Manager1("Managers.csv");
+	ofstream Manager2("Managers2.csv");
+	ofstream Tenant1("Tenants.csv");
+	ofstream Tenant2("Tenants2.csv");
+
 
 	//
 	// print managers
@@ -288,7 +279,7 @@ void searchManagerProfile()
 					}
 					else if (choice == "-1")
 					{
-						printMainOptions();
+						//printMainOptions();
 						return;
 					}
 					else
@@ -377,7 +368,7 @@ void searchTenantProfile()
 					}
 					else if (choice == "-1")
 					{
-						printMainOptions();
+						//printMainOptions();
 						return;
 					}
 					else
